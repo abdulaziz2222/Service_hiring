@@ -123,7 +123,7 @@ li:hover {
     <div class="topnav">
         <a class="active" href="homepage.php">Home</a>
         <a>My account</a>  <!--add the link -->
-        <a>Post a service</a> <!--add the link -->
+        <a href="add-item.html">Post a service</a> <!--add the link -->
         <a href="signout.php">Sign out</a>  <!--add the link -->
         <div class="search-container">
         <form method="post"> <!--add the link -->
