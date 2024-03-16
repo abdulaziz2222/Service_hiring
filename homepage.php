@@ -1,3 +1,6 @@
+<?php session_start();
+    if(!isset($_SESSION["login"]))
+        header("location:signin.html?eror=Please Sign In!"); ?>
 <!DOCTYPE html>
 <head>
   <link rel="stylesheet" href="homepage.css">
@@ -133,10 +136,48 @@ li:hover {
     </div>
 </div>
 
-<h1>Available services</h1>
+<h1>Last 10 Available Services</h1>
 <div id="services">
   <ul>
-    <li>
+<!--    <li>  -->
+    <?php 
+
+include 'db_config.php';
+$con =mysqli_connect(DBHOST,DBUSER,DBPWD,DBNAME);
+if ($con->connect_error) {
+    die("Connection failed: " . $con->connect_error);
+  }
+$phone =$_SESSION["phone"];  
+$sql = "SELECT title,description,img_name,si.service_ID,phone /*,o.condition*/ FROM service_item as si join imagesofservice as ios on si.service_ID = ios.serviceID where $phone <> si.phone order by service_ID desc ";//left join order as o on si.service_ID = o.service_ID";// order by service_ID desc";
+$result = $con->query($sql);
+$renon ="";
+$i=0;
+if ($result->num_rows > 0) {
+  while (($row = $result->fetch_assoc()) && $i<10) {
+      $sid = $row["service_ID"];
+      $tit = $row["title"];
+      $descr = $row["description"];
+//      $conde = $row["condition"];
+//      if(($conde!="taken" && $conde !="approved")|| $conde == null ){
+//      if($renon!=$sid){
+      ?>
+      <p>
+      <form method="post" action="item-details.php" >
+      <?php 
+ //     echo "<button name='selectItes' value='$sid' style='width:70%; height: 20%; margin:20px;  text-align: center;'>";
+      $imgName = $row["img_name"]; 
+      $renon =$sid;
+      echo "<li><img style='width: 15%;' src='img/$imgName' /><h3>$tit</h3><p>$descr</p></li>";
+      $i++;}
+//      }
+//      }
+  }
+else {
+  echo "No results found.";
+}
+$con->close();
+?>  
+<!--
       <img style="width: 15%;" src="img/Electrical.png" />
       <h3>Electrical</h3>
       <p>With a decade of experience, trust me for all your electrical needs.</p>
@@ -155,7 +196,7 @@ li:hover {
       <img style="width: 15%;" src="img/HVACSpecialist.png" />
       <h3>HVAC Specialist</h3>
       <p>Keep your home comfortable with my eight years of HVAC experience.</p>
-    </li>
+    </li> -->
   </ul>
 </div>
 <?php 
