@@ -136,7 +136,7 @@ li:hover {
     </div>
 </div>
 <br>
-<h1>Last 10 Available Services</h1>
+<h1>Available Services</h1>
 <br>
 <div id="services">
   <ul>
@@ -148,8 +148,9 @@ $con =mysqli_connect(DBHOST,DBUSER,DBPWD,DBNAME);
 if ($con->connect_error) {
     die("Connection failed: " . $con->connect_error);
   }
+$ser= $_POST["search"];
 $phone =$_SESSION["phone"];  
-$sql = "SELECT title,description,img_name,si.service_ID,phone /*,o.condition*/ FROM service_item as si join imagesofservice as ios on si.service_ID = ios.serviceID  /*(اذا تبغى تظهر صوره بالهومبيج)where $phone <> si.phone */order by service_ID desc ";//left join order as o on si.service_ID = o.service_ID";// order by service_ID desc";
+$sql = "SELECT title,description,img_name,si.service_ID,phone /*,o.condition*/ FROM service_item as si join imagesofservice as ios on si.service_ID = ios.serviceID where description LIKE '%$ser%' or title LIKE '%$ser%' order by service_ID desc";//left join order as o on si.service_ID = o.service_ID";// order by service_ID desc";
 $result = $con->query($sql);
 $renon ="";
 $i=0;
@@ -169,8 +170,8 @@ if ($result->num_rows > 0) {
       $imgName = $row["img_name"]; 
       $renon =$sid;
       echo "<li><img style='width: 15%;' src='img/$imgName' /><h3>$tit</h3><p>$descr</p></li>";
-      $i++;}}
-//      }
+      $i++;}
+     }
 //      }
   }
 else {
