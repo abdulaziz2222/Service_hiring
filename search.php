@@ -125,7 +125,7 @@ li:hover {
     box-shadow: 0px 30px 50px 0px rgba(0, 0, 0, 0.2);">
     <div class="topnav">
         <a class="active" href="homepage.php">Home</a>
-        <a>My account</a>  <!--add the link -->
+        <a href="profile.php">My account</a>  <!--add the link -->
         <a href="add-item.html">Post a service</a> <!--add the link -->
         <a href="signout.php">Sign out</a>  <!--add the link -->
         <div class="search-container">
@@ -170,7 +170,7 @@ if ($result->num_rows > 0) {
  //     echo "<button name='selectItes' value='$sid' style='width:70%; height: 20%; margin:20px;  text-align: center;'>";
       $imgName = $row["img_name"]; 
       $renon =$sid;
-      echo "<li><img style='width: 15%;' src='img/$imgName' /><h3>$tit</h3><p>$descr</p></li>";
+      echo "<a href ='servicePag.php?value=".$sid."' style='text-decoration:none; color:black;' ><li><img style='width: 15%;' src='img/$imgName' /><h3>$tit</h3><p>$descr</p></li></a></form>";
       $i++;}
      }
 //      }

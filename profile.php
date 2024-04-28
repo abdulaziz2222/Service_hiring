@@ -11,7 +11,17 @@
   background-color: #e9e9e9;
   margin: 0px;
 }
-
+.profile-img {
+  position: relative;
+ /* z-index: 0;
+  bottom: 110%;
+  margin-bottom: -20%;*/
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  border: #fff 10px solid;
+}
 .topnav a {
   float: left;
   display: block;
@@ -84,7 +94,7 @@ ul {
   list-style-type: none;
   width: 100%;
 }
-
+ 
 h3 {
   font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
 }
@@ -114,12 +124,8 @@ li:hover {
     font-size: 1.6rem;
     font-family: 'Open Sans', sans-serif;
     color: #2b3e51;">
-    <?php
-     if (isset($_SESSION['error_message'])) {
-    echo "<script>alert('" . $_SESSION['error_message'] . "');</script>"; // Display it as a JavaScript alert
-    unset($_SESSION['error_message']);}  ?>
 <div style="
-    background-color: #fff;
+    background-color:#fff;
     font-weight: 300;
     width: 80%;
     margin: 0 auto;
@@ -140,44 +146,39 @@ li:hover {
     </div>
 </div>
 <br>
-<h1>Last 10 Available Services</h1>
+<h2>Hi <?php echo $_SESSION["name"]; ?></h2>
 <br>
+<!--<img class="profile-img" src="img/profile.png" />-->
 <div id="services">
   <ul>
-<!--    <li>  -->
     <?php 
-
 include 'db_config.php';
 $con =mysqli_connect(DBHOST,DBUSER,DBPWD,DBNAME);
 if ($con->connect_error) {
     die("Connection failed: " . $con->connect_error);
-  }
+}
 $phone =$_SESSION["phone"];  
 $sql = "SELECT title,description,img_name,si.service_ID,phone /*,o.condition*/ FROM service_item as si join imagesofservice as ios on si.service_ID = ios.serviceID  /*(اذا تبغى تظهر صوره بالهومبيج)where $phone <> si.phone */order by service_ID desc ";//left join order as o on si.service_ID = o.service_ID";// order by service_ID desc";
 $result = $con->query($sql);
 $renon ="";
 $i=0;
 if ($result->num_rows > 0) {
-  while (($row = $result->fetch_assoc()) && $i<10) {
-      $sid = $row["service_ID"];
-      $tit = $row["title"];
-      $descr = $row["description"];
-//      $conde = $row["condition"];
-//      if(($conde!="taken" && $conde !="approved")|| $conde == null ){
-      if($renon!=$sid){
-      ?>
-      <p>
-      <form method="post" action="servicePag.php">
-      <?php 
-      $imgName = $row["img_name"]; 
-      $renon =$sid;
-      echo "<a href ='servicePag.php?value=".$sid."' style='text-decoration:none; color:black;' ><li><img style='width: 15%;' src='img/$imgName' /><h3>$tit</h3><p>$descr</p></li></a></form>";
-      $i++;}}
-//      }
-//      }
-  }
+    while (($row = $result->fetch_assoc()) && $i<10) {
+    $sid = $row["service_ID"];
+    $tit = $row["title"];
+    $descr = $row["description"];
+    if($renon!=$sid){
+    ?>
+    <p>
+    <form method="post" action="item-details.php" >
+    <?php 
+    $imgName = $row["img_name"]; 
+    $renon =$sid;
+    echo "<a href ='servicePag.php?value=".$sid."' style='text-decoration:none; color:black;' ><li><img style='width: 15%;' src='img/$imgName' /><h3>$tit</h3><p>$descr</p></li></a></form>";
+    $i++;}}
+}
 else {
-  echo "No results found.";
+    echo "No results found.";
 }
 $con->close();
 ?>   </ul>
