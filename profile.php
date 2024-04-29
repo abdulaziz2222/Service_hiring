@@ -2,55 +2,113 @@
     if(!isset($_SESSION["login"]))
         header("location:signin.html?eror=Please Sign In!"); ?>
 <!DOCTYPE html>
+<html lang="en">
 <head>
-  <link rel="stylesheet" href="homepage.css">
-  <style>
-		/* Add a black background color to the top navigation bar */
-        .topnav {
-  overflow: hidden;
-  background-color: #e9e9e9;
-  margin: 0px;
-}
-.profile-img {
-  position: relative;
- /* z-index: 0;
-  bottom: 110%;
-  margin-bottom: -20%;*/
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 50%;
-  border: #fff 10px solid;
-}
-.topnav a {
-  float: left;
-  display: block;
-  color: black;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
+    <meta charset="UTF-8">
+    <title>My Services</title>
+    <link rel="stylesheet" href="homepage.css"> <!-- Ensure your CSS path is correct -->
+    <style>
+/* Overall body styles */
+body {
+    background-color: #9f9da7;
+    font-size: 1.6rem;
+    font-family: 'Open Sans', sans-serif;
+    color: #2b3e51;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
+/* Container for content to centralize and shadow */
+.container {
+    background-color: #fff;
+    font-weight: 300;
+    width: 80%;
+    margin-top: 20px;
+    text-align: center;
+    padding-bottom: 20px;
+    border-radius: 4px;
+    box-shadow: 0 30px 50px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Navigation bar styling */
+.topnav {
+    overflow: hidden;
+    background-color: #e9e9e9;
+    width: 100%;
+    border-radius: 4px 4px 0 0;
+}
+
+.topnav a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
 }
 
 .topnav a.active {
-  background-color: #2196F3;
-  color: white;
+    background-color: #2196F3;
+    color: white;
+}
+ .topnav a:hover {
+    background-color: #ddd;
+    color: black;
 }
 
-.topnav .search-container {
-  float: right;
+/* Styling for service lists */
+#servicesProvided, #servicesRequested {
+    margin: 20px auto;
+    width: 90%;
 }
 
-.topnav input[type=text] {
-  padding: 6px;
-  margin-top: 8px;
-  font-size: 17px;
-  border: none;
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background: #f0f0f0;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.service-details {
+    flex-grow: 1;
+}
+
+.service-actions {
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.accepTbutton {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #4CAF50; /* Green for accept */
+    color: white;
+    margin-left: 5px;
+}
+
+.refusebutton{
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #4CAF50; /* Green for accept */
+    color: white;
+    margin-left: 5px;
+    background-color: #f44336; /* Red for refuse */
 }
 
 .topnav .search-container button {
@@ -64,125 +122,136 @@
   cursor: pointer;
 }
 
-.topnav .search-container button:hover {
-  background: #ccc;
+
+button:hover {
+    opacity: 0.8;
 }
 
+.topnav input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  margin-right: 3px;
+  border: none;
+}
 @media screen and (max-width: 600px) {
-  .topnav .search-container {
-    float: none;
-  }
-  .topnav a, .topnav input[type=text], .topnav .search-container button {
-    float: none;
-    display: block;
-    text-align: left;
-    width: 100%;
-    margin: 0;
-    padding: 14px;
-  }
-  .topnav input[type=text] {
-    border: 1px solid #ccc;  
-  }
-}
-* {margin: 0; padding: 0;}
- 
-#services {
-  margin: 20px;
-}
- 
-ul {
-  list-style-type: none;
-  width: 100%;
-}
- 
-h3 {
-  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
-}
- 
-li img {
-  float: left;
-  margin: 0 15px 0 0;
-}
- 
-li p {
-  font: 200 12px/1.5 Georgia, Times New Roman, serif;
-}
- 
-li {
-  padding: 10px;
-  overflow: auto;
-}
- 
-li:hover {
-  background: #eee;
-  cursor: pointer;
-}	
+    .topnav a, .topnav input[type=text], .topnav .search-container button {
+        width: 100%;
+        margin: 0;
+        padding: 14px;
+    }
 
-</style> 
+    .topnav input[type=text] {
+        border: 1px solid #ccc; 
+        display: block; 
+    }
+
+    li {
+        flex-direction: column;
+        align-items: start;
+    }
+
+    li img {
+        margin-bottom: 10px;
+    }
+
+    .service-actions {
+        width: 100%;
+        order: 3; /* Reorder to appear last */
+    }
+}
+
+    </style>
 </head>
-<body style="    background-color: #9f9da7;
-    font-size: 1.6rem;
-    font-family: 'Open Sans', sans-serif;
-    color: #2b3e51;">
-<div style="
-    background-color:#fff;
-    font-weight: 300;
-    width: 80%;
-    margin: 0 auto;
-    text-align: center;
-    padding: 0px 0 20% 0;
-    border-radius: 4px;
-    box-shadow: 0px 30px 50px 0px rgba(0, 0, 0, 0.2);">
-    <div class="topnav">
-        <a class="active" href="homepage.php">Home</a>
-        <a href="profile.php">My account</a>  <!--add the link -->
-        <a href="add-item.html">Post a service</a> <!--add the link -->
-        <a href="signout.php">Sign out</a>  <!--add the link -->
-        <div class="search-container">
-        <form action="search.php" method="post" > <!--add the link -->
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit" name="submit">Search</button>
-        </form>
-    </div>
-</div>
-<br>
-<h2>Hi <?php echo $_SESSION["name"]; ?></h2>
-<br>
-<!--<img class="profile-img" src="img/profile.png" />-->
-<div id="services">
-  <ul>
-    <?php 
+<body>
+ <?php   
 include 'db_config.php';
 $con =mysqli_connect(DBHOST,DBUSER,DBPWD,DBNAME);
 if ($con->connect_error) {
     die("Connection failed: " . $con->connect_error);
-}
-$phone =$_SESSION["phone"];  
-$sql = "SELECT title,description,img_name,si.service_ID,phone /*,o.condition*/ FROM service_item as si join imagesofservice as ios on si.service_ID = ios.serviceID  /*(اذا تبغى تظهر صوره بالهومبيج)where $phone <> si.phone */order by service_ID desc ";//left join order as o on si.service_ID = o.service_ID";// order by service_ID desc";
-$result = $con->query($sql);
-$renon ="";
-$i=0;
-if ($result->num_rows > 0) {
-    while (($row = $result->fetch_assoc()) && $i<10) {
-    $sid = $row["service_ID"];
-    $tit = $row["title"];
-    $descr = $row["description"];
-    if($renon!=$sid){
-    ?>
-    <p>
-    <form method="post" action="item-details.php" >
-    <?php 
-    $imgName = $row["img_name"]; 
-    $renon =$sid;
-    echo "<a href ='servicePag.php?value=".$sid."' style='text-decoration:none; color:black;' ><li><img style='width: 15%;' src='img/$imgName' /><h3>$tit</h3><p>$descr</p></li></a></form>";
-    $i++;}}
-}
-else {
-    echo "No results found.";
-}
-$con->close();
-?>   </ul>
-</div>
-<?php 
-
-?></div></body></html>
+} ?>
+    <div class="container">
+        <div class="topnav">
+            <a class="active" href="homepage.php">Home</a>
+            <a href="profile.php">My Account</a>
+            <a href="add-item.html">Post a Service</a>
+            <a href="signout.php">Sign Out</a>
+            <div class="search-container">
+                <form action="search.php" method="post">
+                    <input style="margin-left: 5px;" type="text" placeholder="Search.." name="search">
+                    <button style="margin-left: 5px;" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+        <br>
+        <h2>Hi <?php echo $_SESSION["name"]; ?></h2>
+        <div id="servicesRequested">
+            <h3>Services Requests</h3>
+            <ul>
+                <?php
+                $phon =$_SESSION['phone'];
+                $sql = 'SELECT ui.phoneNumber as ownerphone,title,description,img_name, o.phoneNumber as requestedphone
+                ,ui.name as ownerName,o.order_service_id, `condition` FROM `order` AS o JOIN service_item AS si ON o.service_ID = si.service_ID 
+                JOIN user_info AS ui ON si.phone = ui.phoneNumber Join imagesofservice as ios on si.service_ID = ios.serviceID  WHERE ui.phoneNumber = "0562959883"';
+                $result = $con->query($sql);
+                $repeat ="";
+                // Assume $resultRequested is fetched before this point
+                while ($row = $result->fetch_assoc()) {
+                    if($repeat != $row["order_service_id"]){
+                    if($row["condition"] == 'waiting' && $_SESSION["phone"]= $row['ownerphone']){
+                    echo "<li> 
+                            <img src='img/".$row["img_name"]."' style='width: 15%; '>
+                            <div class='service-details'>
+                                <h3>".$row["title"]."</h3>
+                                <p>".$row["description"]."</p>
+                                <p style='color: #FDDA0D;'>waiting</p>";
+                                $sqlp ='SELECT name FROM user_info where phoneNumber='.$row["requestedphone"].'';
+                                $result2 = $con->query($sqlp);
+                                $row2 = $result2->fetch_assoc();
+                                echo " <p>Requested by: ".$row2['name'].".</p>
+                            </div>
+                            <div class='service-actions'>
+                                <form action='homepage.php' method='post'>
+                                    <input type='hidden' name='service_id' value='5'>
+                                    <button class='accepTbutton' type='submit' name='response' value='accept'>Accept</button>
+                                    <button class='refusebutton' type='submit' name='response' value='refuse'>Refuse</button>
+                                </form>
+                            </div>
+                        </li>";
+                    }elseif ($row["condition"] == 'accept' && $_SESSION["phone"]= $row['ownerphone']){
+                    echo "<li> 
+                            <img src='img/".$row["img_name"]."' style='width: 15%;'>
+                            <div class='service-details'>
+                                <h3>".$row["title"]."</h3>
+                                <p>".$row["description"]."</p>
+                                <p style='color: #13a809;'>Accepted</p>";
+                                $sqlp ='SELECT name FROM user_info where phoneNumber='.$row["requestedphone"].'';
+                                $result2 = $con->query($sqlp);
+                                $row2 = $result2->fetch_assoc();
+                                echo " <p>Requested by: ".$row2['name'].".</p>
+                                <p>".$row2['name']." phone number: ".$row['requestedphone']."</p>
+                            </div> 
+                            </li>";
+                
+            }else{
+                    echo "<li> 
+                            <img src='img/".$row["img_name"]."' style='width: 15%;'>
+                            <div class='service-details'>
+                                <h3>".$row["title"]."</h3>
+                                <p>".$row["description"]."</p>
+                                <p style='color: red;'>Refused</p>";
+                                $sqlp ='SELECT name FROM user_info where phoneNumber='.$row["requestedphone"].'';
+                                $result2 = $con->query($sqlp);
+                                $row2 = $result2->fetch_assoc();
+                                echo " <p>Requested by: ".$row2['name'].".</p>
+                            </div> 
+                            </li>";
+            }
+            $repeat=$row["order_service_id"];
+        }}
+                ?>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
