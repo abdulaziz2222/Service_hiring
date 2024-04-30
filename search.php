@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <head>
   <link rel="stylesheet" href="homepage.css">
+  <title>Search</title>
   <style>
 		/* Add a black background color to the top navigation bar */
         .topnav {

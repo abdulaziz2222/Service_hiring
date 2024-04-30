@@ -3,6 +3,7 @@
         header("location:signin.html?eror=Please Sign In!"); ?>
 <!DOCTYPE html>
 <head>
+  <title>Homepage</title>
   <link rel="stylesheet" href="homepage.css">
   <style>
 		/* Add a black background color to the top navigation bar */
@@ -129,7 +130,7 @@ li:hover {
     box-shadow: 0px 30px 50px 0px rgba(0, 0, 0, 0.2);">
     <div class="topnav">
         <a class="active" href="homepage.php">Home</a>
-        <a href="profile.php">My account</a>  <!--add the link -->
+        <a href="Profile.php">My account</a>  <!--add the link -->
         <a href="add-item.html">Post a service</a> <!--add the link -->
         <a href="signout.php">Sign out</a>  <!--add the link -->
         <div class="search-container">

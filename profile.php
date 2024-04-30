@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Services</title>
+    <title>My Account</title>
     <link rel="stylesheet" href="homepage.css"> <!-- Ensure your CSS path is correct -->
     <style>
 /* Overall body styles */
@@ -192,10 +192,10 @@ if ($con->connect_error) {
                 $phon =$_SESSION['phone'];
                 $sql = 'SELECT ui.phoneNumber as ownerphone,title,description,img_name, o.phoneNumber as requestedphone
                 ,ui.name as ownerName,o.order_service_id, `condition` FROM `order` AS o JOIN service_item AS si ON o.service_ID = si.service_ID 
-                JOIN user_info AS ui ON si.phone = ui.phoneNumber Join imagesofservice as ios on si.service_ID = ios.serviceID  WHERE ui.phoneNumber = "0562959883"';
+                JOIN user_info AS ui ON si.phone = ui.phoneNumber Join imagesofservice as ios on si.service_ID = ios.serviceID  WHERE ui.phoneNumber = '."$phon".' ORDER BY order_service_id DESC';
                 $result = $con->query($sql);
                 $repeat ="";
-                // Assume $resultRequested is fetched before this point
+                if($result->num_rows >0 ){
                 while ($row = $result->fetch_assoc()) {
                     if($repeat != $row["order_service_id"]){
                     if($row["condition"] == 'waiting' && $_SESSION["phone"]= $row['ownerphone']){
@@ -208,13 +208,14 @@ if ($con->connect_error) {
                                 $sqlp ='SELECT name FROM user_info where phoneNumber='.$row["requestedphone"].'';
                                 $result2 = $con->query($sqlp);
                                 $row2 = $result2->fetch_assoc();
+                                $oID = $row["order_service_id"];
                                 echo " <p>Requested by: ".$row2['name'].".</p>
                             </div>
                             <div class='service-actions'>
-                                <form action='homepage.php' method='post'>
+                                <form action='refuseOrAccept.php' method='post'>
                                     <input type='hidden' name='service_id' value='5'>
-                                    <button class='accepTbutton' type='submit' name='response' value='accept'>Accept</button>
-                                    <button class='refusebutton' type='submit' name='response' value='refuse'>Refuse</button>
+                                    <button class='accepTbutton' type='submit' name='accept' value='$oID'>Accept</button>
+                                    <button class='refusebutton' type='submit' name='refuse' value='$oID'>Refuse</button>
                                 </form>
                             </div>
                         </li>";
@@ -248,7 +249,73 @@ if ($con->connect_error) {
                             </li>";
             }
             $repeat=$row["order_service_id"];
-        }}
+        }}}else {
+            echo "<p>No Result Found.</p>";
+        }
+        
+                ?>
+            </ul>
+            <h3>Services I requested</h3>
+            <ul>
+                <?php
+                $phon =$_SESSION['phone'];
+                $sql = 'SELECT ui.phoneNumber as ownerphone,title,description,img_name, o.phoneNumber as requestedphone
+                ,ui.name as ownerName,o.order_service_id, `condition` FROM `order` AS o JOIN service_item AS si ON o.service_ID = si.service_ID 
+                JOIN user_info AS ui ON si.phone = ui.phoneNumber Join imagesofservice as ios on si.service_ID = ios.serviceID  WHERE o.phoneNumber =  '."$phon".'  ORDER BY order_service_id DESC';
+                $result = $con->query($sql);
+                $repeat ="";
+                // Assume $resultRequested is fetched before this point
+                if($result ->num_rows >0){
+                while ($row = $result->fetch_assoc()) {
+                    if($repeat != $row["order_service_id"]){
+                    if($row["condition"] == 'waiting' && $_SESSION["phone"]= $row['requestedphone']){
+                    echo "<li> 
+                            <img src='img/".$row["img_name"]."' style='width: 15%; '>
+                            <div class='service-details'>
+                                <h3>".$row["title"]."</h3>
+                                <p>".$row["description"]."</p>
+                                <p style='color: #FDDA0D;'>waiting</p>";
+                                $sqlp ='SELECT name FROM user_info where phoneNumber='.$row["ownerphone"].'';
+                                $result2 = $con->query($sqlp);
+                                $row2 = $result2->fetch_assoc();
+                                $oID = $row["order_service_id"];
+                                echo " <p>service provider: ".$row2['name'].".</p>
+                            </div>
+                            
+                        </li>";
+                    }elseif ($row["condition"] == 'accept' && $_SESSION["phone"]= $row['requestedphone']){
+                    echo "<li> 
+                            <img src='img/".$row["img_name"]."' style='width: 15%;'>
+                            <div class='service-details'>
+                                <h3>".$row["title"]."</h3>
+                                <p>".$row["description"]."</p>
+                                <p style='color: #13a809;'>Accepted</p>";
+                                $sqlp ='SELECT name FROM user_info where phoneNumber='.$row["ownerphone"].'';
+                                $result2 = $con->query($sqlp);
+                                $row2 = $result2->fetch_assoc();
+                                echo " <p>Service provider: ".$row2['name'].".</p>
+                                <p>".$row2['name']." phone number: ".$row['ownerphone']."</p>
+                            </div> 
+                            </li>";
+                
+            }else{
+                    echo "<li> 
+                            <img src='img/".$row["img_name"]."' style='width: 15%;'>
+                            <div class='service-details'>
+                                <h3>".$row["title"]."</h3>
+                                <p>".$row["description"]."</p>
+                                <p style='color: red;'>Refused</p>";
+                                $sqlp ='SELECT name FROM user_info where phoneNumber='.$row["ownerphone"].'';
+                                $result2 = $con->query($sqlp);
+                                $row2 = $result2->fetch_assoc();
+                                echo " <p>Service provider: ".$row2['name'].".</p>
+                            </div> 
+                            </li>";
+            }
+            $repeat=$row["order_service_id"];
+        }}} else{
+            echo '<p>No Result Found.</p>';
+        }
                 ?>
             </ul>
         </div>
