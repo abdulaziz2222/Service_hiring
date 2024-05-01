@@ -186,7 +186,7 @@ if ($con->connect_error) {
         <br>
         <h2>Hi <?php echo $_SESSION["name"]; ?></h2>
         <div id="servicesRequested">
-            <h3>Services Requests</h3>
+            <h3>Requests for my services</h3>
             <ul>
                 <?php
                 $phon =$_SESSION['phone'];
@@ -255,7 +255,7 @@ if ($con->connect_error) {
         
                 ?>
             </ul>
-            <h3>Services I requested</h3>
+            <h3>My requests for services</h3>
             <ul>
                 <?php
                 $phon =$_SESSION['phone'];

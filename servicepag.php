@@ -218,7 +218,7 @@ $conn->close();
         <button style ='background-color: #2196F3;' class ="buttonNext" onclick="previousImage()">Previous</button>
         <button style ='background-color: #2196F3;' class ="buttonNext" onclick="nextImage()">Next</button>
         <form method="post" action="requestService.php" style="display: inline;">
-        <button id="requestButton" class="button" name="ord" value="<?php echo "$sid"; ?>" onclick="changeButton()">Request a Service</button></form>
+        <button id="requestButton" class="button" name="ord" value="<?php echo "$sid"; ?>" onclick="changeButton()">Request the Service</button></form>
 
     </div>
     <br>
