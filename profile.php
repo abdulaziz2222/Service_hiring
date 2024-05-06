@@ -178,8 +178,8 @@ if ($con->connect_error) {
             <a href="signout.php">Sign Out</a>
             <div class="search-container">
                 <form action="search.php" method="post">
-                    <input style="margin-left: 5px;" type="text" placeholder="Search.." name="search">
-                    <button style="margin-left: 5px;" type="submit">Search</button>
+                    <input style="margin-right: -715px;" type="text" placeholder="Search.." name="search">
+                    <button style="margin-left: 0px;" type="submit">Search</button>
                 </form>
             </div>
         </div>

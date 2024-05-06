@@ -154,7 +154,7 @@ if ($con->connect_error) {
     die("Connection failed: " . $con->connect_error);
   }
 $phone =$_SESSION["phone"];  
-$sql = "SELECT title,description,img_name,si.service_ID,phone /*,o.condition*/ FROM service_item as si join imagesofservice as ios on si.service_ID = ios.serviceID  /*(اذا تبغى تظهر صوره بالهومبيج)where $phone <> si.phone */order by service_ID desc ";//left join order as o on si.service_ID = o.service_ID";// order by service_ID desc";
+$sql = "SELECT title,description,img_name,si.service_ID,phone,ui.name FROM service_item as si join imagesofservice as ios on si.service_ID = ios.serviceID join user_info as ui on ui.phoneNumber = si.phone order by service_ID desc ";
 $result = $con->query($sql);
 $renon ="";
 $i=0;
@@ -163,6 +163,7 @@ if ($result->num_rows > 0) {
       $sid = $row["service_ID"];
       $tit = $row["title"];
       $descr = $row["description"];
+      $na = $row["name"];
 //      $conde = $row["condition"];
 //      if(($conde!="taken" && $conde !="approved")|| $conde == null ){
       if($renon!=$sid){
@@ -172,7 +173,7 @@ if ($result->num_rows > 0) {
       <?php 
       $imgName = $row["img_name"]; 
       $renon =$sid;
-      echo "<a href ='servicePag.php?value=".$sid."' style='text-decoration:none; color:black;' ><li><img style='width: 15%;' src='img/$imgName' /><h3>$tit</h3><p>$descr</p></li></a></form>";
+      echo "<a href ='servicePag.php?value=".$sid."' style='text-decoration:none; color:black;' ><li><img style='width: 15%;' src='img/$imgName' /><h3>$tit</h3><p>$descr</p><br><p>Service provider: $na</p></li></a></form>";
       $i++;}}
 //      }
 //      }
