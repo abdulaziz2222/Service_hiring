@@ -4,7 +4,6 @@ include 'db_config.php';
 // Retrieve form data
 $email = "";
 $password ="";
-
 // Perform validation and database operations
 // ...
 if(!isset($email)||!isset($password)){
@@ -28,13 +27,15 @@ if(mysqli_num_rows($result) == 0){
     $_SESSION["email"]=$email;
 
 
-    $query = "SELECT phoneNumber FROM user_info WHERE email='$email' AND password='$password'";
+    $query = "SELECT phoneNumber,user_id,password FROM user_info WHERE email='$email' AND password='$password'";
     $np = mysqli_query($con,$query);
     if ($np) {
         $rowP = mysqli_fetch_assoc($np);
         $valueP = $rowP['phoneNumber'];
+        $_SESSION["id"]=$rowP['user_id'];
         // You can now use the value stored in the variable
         $_SESSION["phone"]=$valueP;
+        $_SESSION["password"]=$rowP["password"];
         } else {
         // Handle query error
         echo "Error executing the query: " . mysqli_error($con);

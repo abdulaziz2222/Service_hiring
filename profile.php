@@ -89,6 +89,16 @@ li {
     flex-grow: 0;
     flex-shrink: 0;
 }
+   
+.editButton {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: #2196F3; /* Green for accept */
+        color: white;
+   /*     margin: 25px 120px; */
+}
 
 .accepTbutton {
     padding: 8px 16px;
@@ -159,6 +169,8 @@ button:hover {
         width: 100%;
         order: 3; /* Reorder to appear last */
     }
+    
+   
 }
 
     </style>
@@ -178,13 +190,15 @@ if ($con->connect_error) {
             <a href="signout.php">Sign Out</a>
             <div class="search-container">
                 <form action="search.php" method="post">
-                    <input style="margin-right: -715px;" type="text" placeholder="Search.." name="search">
+                    <input style="margin-right: -715px;" type="text" placeholder="Search.." name="search" >
                     <button style="margin-left: 0px;" type="submit">Search</button>
                 </form>
             </div>
         </div>
         <br>
-        <h2>Hi <?php echo $_SESSION["name"]; ?></h2>
+        <h2>Hi <?php echo $_SESSION["name"];?></h2>
+        <a href="editProfile.php" style=" margin: 25px 120px;"><button class='editButton' type='submit' name='accept' value='$oID'>Edit my profile</button></a>
+        <a href="" style=" margin: 25px 120px;"><button class='editButton' type='submit' name='accept' value='$oID'>Edit my services</button></a>
         <div id="servicesRequested">
             <h3>Requests for my services</h3>
             <ul>
