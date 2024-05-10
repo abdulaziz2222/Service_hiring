@@ -1,3 +1,6 @@
+<?php session_start();
+    if(!isset($_SESSION["login"]))
+        header("location:signin.html?eror=Please Sign In!"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +9,7 @@
     <title>Edit Service</title>
     <link rel="stylesheet" href="add-item.css">
     <style>
-/* add-item.css */
+
 body {
     font-family: Arial, sans-serif;
     background-color: #9f9da7;
@@ -157,10 +160,50 @@ box-shadow: 0px 30px 50px 0px rgba(0, 0, 0, 0.2);">
     </div>
     <h1>Edit Service</h1>
     <?php 
-    $title ="";
+    $sid =$_POST["edit"];
+    $title ='';
     $description ="";
+    include 'db_config.php';
+$con =mysqli_connect(DBHOST,DBUSER,DBPWD,DBNAME);
+if ($con->connect_error) {
+    die("Connection failed: " . $con->connect_error);
+    }
+$renon ="";
+$phone =$_SESSION["phone"];  
+$sql = "SELECT title,description,img_name,si.service_ID,phone,ui.name FROM service_item as si join imagesofservice as ios 
+on si.service_ID = ios.serviceID join user_info as ui on ui.phoneNumber = si.phone where si.service_ID=".$sid." order by service_ID desc ";
+$result = $con->query($sql);
+if ($result->num_rows > 0) {
+    while (($row = $result->fetch_assoc()) ) {
+    $sid = $row["service_ID"];
+    $tit = $row["title"];
+        $descr = $row["description"];
+        $na = $row["name"];
+        if($renon!=$sid){
+        ?>
+        <p>
+        <?php 
+        $imgName = $row["img_name"]; 
+        $renon =$sid;
+        ?> 
+        <form action="update_service.php" method="POST" enctype="multipart/form-data">
+        <label for="title">Title:</label>
+        <input type="text" class="inputsepdate" id="title" name="title" value="<?php echo $tit; ?>" required><br>
+        <label for="description">Description:</label>
+        <input id="description" class="inputsepdate" name="description" value="<?php echo $descr;?>" required ><br>
+        <?php for ($i = 1; $i <= 4; $i++): ?>
+        <label for="image<?php echo $i; ?>">Image <?php echo $i; ?>:</label>
+        <input type="file" class="inputsepdate" id="image<?php echo $i; ?>" name="image<?php echo $i; ?>"><br>
+        <?php endfor; 
+        }}
+    }
+else {
+    echo "No results found.";
+}
+$con->close();
+
     ?>
-    <form action="update_service.php" method="POST" enctype="multipart/form-data">
+    <!-- <form action="update_service.php" method="POST" enctype="multipart/form-data">
         <label for="title">Title:</label>
         <input type="text" class="inputsepdate" id="title" name="title" value="<?php echo $title; ?>" required><br>
 
@@ -171,8 +214,8 @@ box-shadow: 0px 30px 50px 0px rgba(0, 0, 0, 0.2);">
         <label for="image<?php echo $i; ?>">Image <?php echo $i; ?>:</label>
         <input type="file" class="inputsepdate" id="image<?php echo $i; ?>" name="image<?php echo $i; ?>"><br>
         <?php endfor; ?>
-
-        <input class="button-19" type="submit" value="Update Service">
+        -->
+        <input class="button-19" type="submit" value="save">
     </form>
 </div>
 </body>

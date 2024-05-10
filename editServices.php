@@ -172,7 +172,8 @@ if ($con->connect_error) {
   }
   $renon ="";
 $phone =$_SESSION["phone"];  
-$sql = "SELECT title,description,img_name,si.service_ID,phone,ui.name FROM service_item as si join imagesofservice as ios on si.service_ID = ios.serviceID join user_info as ui on ui.phoneNumber = si.phone where ui.phoneNumber=".$phone." order by service_ID desc ";
+$sql = "SELECT title,description,img_name,si.service_ID,phone,ui.name FROM service_item as si join imagesofservice as ios 
+on si.service_ID = ios.serviceID join user_info as ui on ui.phoneNumber = si.phone where ui.phoneNumber=".$phone." order by service_ID desc ";
 $result = $con->query($sql);
 if ($result->num_rows > 0) {
   while (($row = $result->fetch_assoc()) ) {
@@ -191,7 +192,7 @@ if ($result->num_rows > 0) {
       <div class='service-actions'>
                                 <form action='ServiceEditedPage.php' method='post'>
                                     <input type='hidden' name='service_id' value='5'>
-                                    <button class='editButton' type='submit' name='accept' value=''>Edit</button>
+                                    <button class='editButton' type='submit' name='edit' value='$sid'>Edit</button>
                                 </form>
                             </div>
       </form></li></a>";
