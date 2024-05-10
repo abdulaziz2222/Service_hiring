@@ -198,7 +198,7 @@ if ($con->connect_error) {
         <br>
         <h2>Hi <?php echo $_SESSION["name"];?></h2>
         <a href="editProfile.php" style=" margin: 25px 120px;"><button class='editButton' type='submit' name='accept' value='$oID'>Edit my profile</button></a>
-        <a href="" style=" margin: 25px 120px;"><button class='editButton' type='submit' name='accept' value='$oID'>Edit my services</button></a>
+        <a href="editServices.php" style=" margin: 25px 120px;"><button class='editButton' type='submit' name='accept' value='$oID'>Edit my services</button></a>
         <div id="servicesRequested">
             <h3>Requests for my services</h3>
             <ul>

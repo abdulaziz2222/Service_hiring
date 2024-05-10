@@ -3,10 +3,20 @@
         header("location:signin.html?eror=Please Sign In!"); ?>
 <!DOCTYPE html>
 <head>
-  <title>Homepage</title>
+  <title>Edit my services</title>
   <link rel="stylesheet" href="homepage.css">
   <style>
 		/* Add a black background color to the top navigation bar */
+        
+.editButton {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #2196F3; /* Green for accept */
+    color: white;
+    margin-left: 5px;
+}
         .topnav {
   overflow: hidden;
   background-color: #e9e9e9;
@@ -74,6 +84,10 @@
   .topnav input[type=text] {
     border: 1px solid #ccc;  
   }
+  .service-actions {
+        width: 100%;
+        order: 3; /* Reorder to appear last */
+    }
 }
 * {margin: 0; padding: 0;}
  
@@ -108,6 +122,11 @@ li:hover {
   background: #eee;
   cursor: pointer;
 }	
+.service-actions {
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+   
 
 </style> 
 </head>
@@ -141,25 +160,22 @@ li:hover {
     </div>
 </div>
 <br>
-<h1>Last 10 Available Services</h1>
+<h1>My services</h1>
 <br>
 <div id="services">
   <ul>
-<!--    <li>  -->
     <?php 
-
 include 'db_config.php';
 $con =mysqli_connect(DBHOST,DBUSER,DBPWD,DBNAME);
 if ($con->connect_error) {
     die("Connection failed: " . $con->connect_error);
   }
+  $renon ="";
 $phone =$_SESSION["phone"];  
-$sql = "SELECT title,description,img_name,si.service_ID,phone,ui.name FROM service_item as si join imagesofservice as ios on si.service_ID = ios.serviceID join user_info as ui on ui.phoneNumber = si.phone order by service_ID desc ";
+$sql = "SELECT title,description,img_name,si.service_ID,phone,ui.name FROM service_item as si join imagesofservice as ios on si.service_ID = ios.serviceID join user_info as ui on ui.phoneNumber = si.phone where ui.phoneNumber=".$phone." order by service_ID desc ";
 $result = $con->query($sql);
-$renon ="";
-$i=0;
 if ($result->num_rows > 0) {
-  while (($row = $result->fetch_assoc()) && $i<10) {
+  while (($row = $result->fetch_assoc()) ) {
       $sid = $row["service_ID"];
       $tit = $row["title"];
       $descr = $row["description"];
@@ -167,12 +183,19 @@ if ($result->num_rows > 0) {
       if($renon!=$sid){
       ?>
       <p>
-      <form method="post" action="servicePag.php">
       <?php 
       $imgName = $row["img_name"]; 
       $renon =$sid;
-      echo "<a href ='servicePag.php?value=".$sid."' style='text-decoration:none; color:black;' ><li><img style='width: 15%;' src='img/$imgName' /><h3>$tit</h3><p>$descr</p><br><p>Service provider: $na</p></li></a></form>";
-      $i++;}}
+      echo "<a href ='servicePag.php?value=".$sid."' style='text-decoration:none; color:black;' ><li><img style='width: 15%;' src='img/$imgName' />
+      <h3>$tit</h3><p>$descr</p><br>
+      <div class='service-actions'>
+                                <form action='ServiceEditedPage.php' method='post'>
+                                    <input type='hidden' name='service_id' value='5'>
+                                    <button class='editButton' type='submit' name='accept' value=''>Edit</button>
+                                </form>
+                            </div>
+      </form></li></a>";
+      }}
   }
 else {
   echo "No results found.";
