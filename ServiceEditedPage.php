@@ -1,4 +1,5 @@
-<?php session_start();
+<?php 
+    session_start();
     if(!isset($_SESSION["login"]))
         header("location:signin.html?eror=Please Sign In!"); ?>
 <!DOCTYPE html>
@@ -175,8 +176,8 @@ on si.service_ID = ios.serviceID join user_info as ui on ui.phoneNumber = si.pho
 $result = $con->query($sql);
 if ($result->num_rows > 0) {
     while (($row = $result->fetch_assoc()) ) {
-    $sid = $row["service_ID"];
-    $tit = $row["title"];
+        $sid = $row["service_ID"];
+        $tit = $row["title"];
         $descr = $row["description"];
         $na = $row["name"];
         if($renon!=$sid){
@@ -186,37 +187,43 @@ if ($result->num_rows > 0) {
         $imgName = $row["img_name"]; 
         $renon =$sid;
         ?> 
-        <form action="update_service.php" method="POST" enctype="multipart/form-data">
+        
+        <form action="update_service.php" method="POST" enctype="multipart/form-data" onsubmit="return validateFileCount()">
         <label for="title">Title:</label>
         <input type="text" class="inputsepdate" id="title" name="title" value="<?php echo $tit; ?>" required><br>
         <label for="description">Description:</label>
         <input id="description" class="inputsepdate" name="description" value="<?php echo $descr;?>" required ><br>
-        <?php for ($i = 1; $i <= 4; $i++): ?>
-        <label for="image<?php echo $i; ?>">Image <?php echo $i; ?>:</label>
-        <input type="file" class="inputsepdate" id="image<?php echo $i; ?>" name="image<?php echo $i; ?>"><br>
-        <?php endfor; 
-        }}
+        <input style="display: none;" name="sid" value="<?php echo $sid; ?>">
+        <div class="button-19">
+        <label for="im" style="font-size: 14px;">replace images   
+        <input id="im"  type="file" style="display: none;" name="images[]" multiple>
+        <img src="img/upload.png" style="height: 14px;width: 30px;" /></div>
+        <p style="margin-top: 10px; font-size: 0.85rem; color: #666;">
+                Please select up to 4 images.
+            </p>
+        <br>
+        <br>
+        <input class="button-19" type="submit" value="save">
+        </form>
+        <?php }
+        }
     }
 else {
     echo "No results found.";
 }
 $con->close();
-
     ?>
-    <!-- <form action="update_service.php" method="POST" enctype="multipart/form-data">
-        <label for="title">Title:</label>
-        <input type="text" class="inputsepdate" id="title" name="title" value="<?php echo $title; ?>" required><br>
-
-        <label for="description">Description:</label>
-        <input id="description" class="inputsepdate" name="description" required><?php echo $description; ?><br>
-
-        <?php for ($i = 1; $i <= 4; $i++): ?>
-        <label for="image<?php echo $i; ?>">Image <?php echo $i; ?>:</label>
-        <input type="file" class="inputsepdate" id="image<?php echo $i; ?>" name="image<?php echo $i; ?>"><br>
-        <?php endfor; ?>
-        -->
-        <input class="button-19" type="submit" value="save">
-    </form>
 </div>
+<script>
+    function validateFileCount() {
+        var input = document.getElementById('im');
+        var files = input.files;
+        if (files.length > 4) {
+            alert('You may upload up to 4 images only.');
+            return false;
+        }
+        return true;
+    }
+    </script>
 </body>
 </html>

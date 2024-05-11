@@ -185,7 +185,7 @@ if ($con->connect_error) {
     <div class="container">
         <div class="topnav">
             <a class="active" href="homepage.php">Home</a>
-            <a href="profile.php">My Account</a>
+            <a href="profile.php">My account</a>
             <a href="add-item.html">Post a Service</a>
             <a href="signout.php">Sign Out</a>
             <div class="search-container">

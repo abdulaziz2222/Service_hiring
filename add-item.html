@@ -161,14 +161,18 @@ box-shadow: 0px 30px 50px 0px rgba(0, 0, 0, 0.2);">
     </div>
 </div>
   <h1>Post a service</h1>
-  <form id="add-form" action="add-item.php" method="POST" enctype="multipart/form-data">
+  <form id="add-form" action="add-item.php" method="POST" enctype="multipart/form-data" onsubmit="return validateFileCount()">
     <br><label for="des" style="margin-right:120px; font-size: 20px; padding-left: 150px;">Add title to your service:  </label><input type="text" style="height: 100%;width: 25%;" name="title" id="des" placeholder="Title"><br>
     <br><label for="des" style="font-size: 20px; padding-left:150px;">Add some description of your service:  </label><input type="text" style="height: 100%; width: 25%;" name="description" id="des" placeholder="Description"><br>
     <br>     <br> 
     <br> 
 
       <div id="fmg" class="button-19">
-        <label for="im" style="font-size: 14px;">Upload images of your service  <input id="im" type="file" style="display: none;" name="images[]" multiple><img src="img/upload.png" style="height: 14px;width: 30px;" /></div>
+        <label for="im" style="font-size: 14px;">Upload images of your service  <input id="im" type="file" style="display: none;" name="images[]" multiple>
+          <img src="img/upload.png" style="height: 14px;width: 30px;" /></div>
+          <p style="margin-top: 10px; font-size: 0.85rem; color: #666;">
+            Please select up to 4 images.
+        </p>
         </label><br>
     <br><p><input class="button-19" style="
       background-color: #3ca9e2;
@@ -183,6 +187,17 @@ box-shadow: 0px 30px 50px 0px rgba(0, 0, 0, 0.2);">
       cursor: pointer;" type="submit" value="Post Service"></p>
 
 </div>
+<script>
+  function validateFileCount() {
+      var input = document.getElementById('im');
+      var files = input.files;
+      if (files.length > 4) {
+          alert('You may upload up to 4 images only.');
+          return false;
+      }
+      return true;
+  }
+  </script>
   <script src="jquery.min.js"></script>
   <script src="add-item.js"></script>
 </body>
