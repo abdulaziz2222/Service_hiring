@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Edit my profile</title>
+  <title>Edit my account</title>
   <!--<link rel="stylesheet" type="text/css" href="styles.css">-->
   <link rel="stylesheet" href="add-item.css">
   <style>
@@ -175,7 +175,7 @@ box-shadow: 0px 30px 50px 0px rgba(0, 0, 0, 0.2);">
        $id =$_SESSION["id"];
 
 ?>
-  <h1>Edit my profile</h1>
+  <h1>Edit my account</h1>
   <form action="update_profile.php" method="POST">
     <label for="name">Name:</label>
     <input type="text" class="inputsepdate" id="name" name="name" value="<?php echo $name; ?>" required><br>

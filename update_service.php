@@ -23,8 +23,9 @@ if (!$stmt) {
 // Bind the variables to the prepared statement as parameters
 $stmt->bind_param("ssi", $title, $description, $sid);
 
-if (!empty($_FILES['images']['name'])) {
-    echo "Files detected.<br>";
+$fileName = mysqli_real_escape_string($conn, $_FILES['images']['name'][0]);
+if($fileName!=""){
+        echo "Files detected.<br>";
     // Delete old images
     $queryFI = "DELETE FROM imagesofservice WHERE serviceID='$sid'";
     if ($conn->query($queryFI)) {
@@ -51,7 +52,7 @@ if (!empty($_FILES['images']['name'])) {
             echo "Database update failed for file: $fileName. Error: " . $conn->error . "<br>";
         }
     }
-} else {  echo "No files uploaded.<br>";}
+}
 
 // Execute the statement
 if ($stmt->execute()) {
