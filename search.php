@@ -6,7 +6,8 @@
   <link rel="stylesheet" href="homepage.css">
   <title>Search</title>
   <style>
-		/* Add a black background color to the top navigation bar */
+
+
         .topnav {
   overflow: hidden;
   background-color: #e9e9e9;
@@ -61,7 +62,6 @@
 
 @media screen and (max-width: 600px) {
   .topnav .search-container {
-    float: none;
   }
   .topnav a, .topnav input[type=text], .topnav .search-container button {
     float: none;

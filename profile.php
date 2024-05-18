@@ -26,12 +26,11 @@ body {
     background-color: #fff;
     font-weight: 300;
     width: 80%;
-    margin-top: 20px;
+    margin: 0 auto;
     text-align: center;
-    padding-bottom: 20px;
+    padding: 0px 0 20% 0;
     border-radius: 4px;
-    box-shadow: 0 30px 50px 0 rgba(0, 0, 0, 0.2);
-}
+    box-shadow: 0px 30px 50px 0px rgba(0, 0, 0, 0.2);}
 
 /* Navigation bar styling */
 .topnav {
@@ -64,6 +63,10 @@ body {
 #servicesProvided, #servicesRequested {
     margin: 20px auto;
     width: 90%;
+}
+
+.topnav .search-container {
+  float: right;
 }
 
 ul {
@@ -146,6 +149,9 @@ button:hover {
 }
 @media screen and (max-width: 600px) {
     .topnav a, .topnav input[type=text], .topnav .search-container button {
+        float: none;
+        display: block;
+        text-align: left;
         width: 100%;
         margin: 0;
         padding: 14px;
@@ -153,7 +159,6 @@ button:hover {
 
     .topnav input[type=text] {
         border: 1px solid #ccc; 
-        display: block; 
     }
 
     li {
@@ -170,7 +175,7 @@ button:hover {
         order: 3; /* Reorder to appear last */
     }
     
-   
+
 }
 
     </style>
@@ -190,8 +195,8 @@ if ($con->connect_error) {
             <a href="signout.php">Sign Out</a>
             <div class="search-container">
                 <form action="search.php" method="post">
-                    <input style="margin-right: -715px;" type="text" placeholder="Search.." name="search" >
-                    <button style="margin-left: 0px;" type="submit">Search</button>
+                    <input style="padding-right: 0px;" type="text" placeholder="Search.." name="search" >
+                    <button style="padding-left: 0px;" type="submit">Search</button>
                 </form>
             </div>
         </div>
