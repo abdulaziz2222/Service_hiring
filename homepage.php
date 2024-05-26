@@ -4,10 +4,10 @@
 <!DOCTYPE html>
 <head>
   <title>Homepage</title>
-  <link rel="stylesheet" href="homepage.css">
+  <link rel="stylesheet" href="styles/homePage.css">
   <style>
-		/* Add a black background color to the top navigation bar */
-        .topnav {
+
+.topnav {
   overflow: hidden;
   background-color: #e9e9e9;
   margin: 0px;
@@ -76,58 +76,14 @@
   }
 }
 * {margin: 0; padding: 0;}
- 
-#services {
-  margin: 20px;
-}
- 
-ul {
-  list-style-type: none;
-  width: 100%;
-}
-
-h3 {
-  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
-}
- 
-li img {
-  float: left;
-  margin: 0 15px 0 0;
-}
- 
-li p {
-  font: 200 12px/1.5 Georgia, Times New Roman, serif;
-}
- 
-li {
-  padding: 10px;
-  overflow: auto;
-}
- 
-li:hover {
-  background: #eee;
-  cursor: pointer;
-}	
 
 </style> 
 </head>
-<body style="    background-color: #9f9da7;
-    font-size: 1.6rem;
-    font-family: 'Open Sans', sans-serif;
-    color: #2b3e51;">
+<body id="body" class="backgroundPhoto">
     <?php
-     if (isset($_SESSION['error_message'])) {
+    if (isset($_SESSION['error_message'])) {
     echo "<script>alert('" . $_SESSION['error_message'] . "');</script>"; // Display it as a JavaScript alert
     unset($_SESSION['error_message']);}  ?>
-<div style="
-    background-color: #fff;
-    font-weight: 300;
-    width: 80%;
-    margin: 0 auto;
-    text-align: center;
-    padding: 0px 0 20% 0;
-    border-radius: 4px;
-    box-shadow: 0px 30px 50px 0px rgba(0, 0, 0, 0.2);">
     <div class="topnav">
         <a class="active" href="homepage.php">Home</a>
         <a href="Profile.php">My account</a>  <!--add the link -->
@@ -141,11 +97,12 @@ li:hover {
     </div>
 </div>
 <br>
-<h1>Last 10 Available Services</h1>
 <br>
-<div id="services">
+<section id="last10AddedServices">
+  <br>
+<h1 class="headerForLast10AddedServices">Latest 10 Available Services</h1>
+<br>
   <ul>
-<!--    <li>  -->
     <?php 
 
 include 'db_config.php';
@@ -154,9 +111,14 @@ if ($con->connect_error) {
     die("Connection failed: " . $con->connect_error);
   }
 $phone =$_SESSION["phone"];  
-$sql = "SELECT title,description,img_name,si.service_ID,phone,ui.name FROM service_item as si join imagesofservice as ios on si.service_ID = ios.serviceID join user_info as ui on ui.phoneNumber = si.phone order by service_ID desc ";
+
+$sql = "SELECT title,description,img_name,si.service_ID,phone,ui.name,numOfOrders
+FROM service_item as si join imagesofservice as ios on si.service_ID = ios.serviceID 
+join user_info as ui on ui.phoneNumber = si.phone order by si.service_ID desc";
+
 $result = $con->query($sql);
-$renon ="";
+
+$myArray = [];
 $i=0;
 if ($result->num_rows > 0) {
   while (($row = $result->fetch_assoc()) && $i<10) {
@@ -164,14 +126,58 @@ if ($result->num_rows > 0) {
       $tit = $row["title"];
       $descr = $row["description"];
       $na = $row["name"];
-      if($renon!=$sid){
-      ?>
+      if(!in_array($sid,$myArray)){
+?>
       <p>
       <form method="post" action="servicePag.php">
       <?php 
       $imgName = $row["img_name"]; 
-      $renon =$sid;
-      echo "<a href ='servicePag.php?value=".$sid."' style='text-decoration:none; color:black;' ><li><img style='width: 15%;' src='img/$imgName' /><h3>$tit</h3><p>$descr</p><br><p>Service provider: $na</p></li></a></form>";
+      $myArray[] =$sid; 
+      echo "<a href ='servicePag.php?value=".$sid."' class='styleFora' ><li>
+      <img class='imgLast10AddedServicesContainer' src='img/$imgName' />
+      <h3 class='headerOfParagraphFontForLast10AddedServices'>$tit</h3><p class='paragraphFontLast10AddedServices'>$descr</p>
+      <p class='paragraphFontLast10AddedServices'>Service provider: $na</p></li></a></form>";
+      $i++;}}
+  }
+else {
+  echo "No results found.";
+}
+//$con->close();
+?>   </ul>
+</div>
+<br>
+</section>
+
+<section id="mostServicesOrder">
+  <br>
+<h1>Most Services Order</h1>
+<br>
+  <ul>
+    <?php 
+$sql = "SELECT title,description,img_name,si.service_ID,phone,ui.name,numOfOrders
+FROM service_item as si join imagesofservice as ios on si.service_ID = ios.serviceID 
+join user_info as ui on ui.phoneNumber = si.phone order by numOfOrders desc";
+
+$result = $con->query($sql);
+$myArray2 = [];
+$i=0;
+if ($result->num_rows > 0) {
+  while (($row = $result->fetch_assoc()) && $i<5) {
+      $sid = $row["service_ID"];
+      $tit = $row["title"];
+      $descr = $row["description"];
+      $na = $row["name"];
+      if(!in_array($sid,$myArray2)){
+?>
+      <p>
+      <form method="post" action="servicePag.php">
+      <?php 
+      $imgName = $row["img_name"]; 
+      $myArray2[] =$sid; 
+      echo "<a href ='servicePag.php?value=".$sid."' class='styleFora' >
+      <li><img class='imgForMostOrderContainer' src='img/$imgName' />
+      <h3 class='headerOfParagraphFontForMostOrder'>$tit</h3><p class='paragraphFontForMostOrder'>$descr</p>
+      <p class='paragraphFontForMostOrder'>Service provider: $na</p></li></a></form>";
       $i++;}}
   }
 else {
@@ -180,6 +186,6 @@ else {
 $con->close();
 ?>   </ul>
 </div>
-<?php 
-
-?></div></body></html>
+<br>
+</section>
+</body></html>

@@ -25,6 +25,10 @@ session_start();
         die("Cannot connect to db ".mysqli_connect_error());
     }
     $result = mysqli_query($con,$query);
+
+    $query2 ="UPDATE `service_item` SET numOfOrders = numOfOrders + 1 WHERE `service_ID` = $sid";
+    $result = mysqli_query($con,$query2);
+
     mysqli_close($con);
     header("location:profile.php");
     }else{

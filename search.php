@@ -64,7 +64,6 @@
   .topnav .search-container {
   }
   .topnav a, .topnav input[type=text], .topnav .search-container button {
-    float: none;
     display: block;
     text-align: left;
     width: 100%;

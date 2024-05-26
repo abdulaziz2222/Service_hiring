@@ -1,0 +1,93 @@
+#body {
+    background-color: #fff;
+    font-family: 'Cambria';
+    color: #000;
+  }
+  .backgroundPhoto{
+    background-image: url('imgesForStyles/bakgroundPage.png'); /* Replace with any page if you want to change the image */
+      background-position: center;
+      background-repeat: repeat;
+      z-index: -1
+  }
+  .headerOfParagraphFontForLast10AddedServices{
+    font-family: 'Cambria';
+    font-size: 1.3rem;
+  }
+  .paragraphFontLast10AddedServices{
+    font-family: 'Cambria';
+    font-size: 1rem;
+  }
+  .imgLast10AddedServicesContainer{
+    float: left;
+    margin: 0 15px 0 0;
+    width: 15%;  
+    border-radius: 10px;
+  }
+  
+  #last10AddedServices {
+    float: left;
+    display: inline-block;
+    text-align: center;
+    margin: 10px 30px;
+    width: 70%;
+    height: 100%;
+    background-color: #FFF;
+    border-radius: 10px;
+    box-shadow: 0px 30px 80px 0px rgba(0, 0, 0, 0.2);
+  }
+  .headerForLast10AddedServices{
+    font-size: 3rem;
+  } 
+
+  
+  
+  
+  #mostServicesOrder {
+    float:right;
+    display: inline-block;
+    text-align: center;
+    margin: 10px 50px;
+    width: 17%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: #FFF;
+    box-shadow: 0px 30px 80px 0px rgba(0, 0, 0, 0.2);
+  }
+  .headerOfParagraphFontForMostOrder{
+    font-family: 'Cambria';
+    font-size: 0.8rem;
+  }
+  .paragraphFontForMostOrder{
+    font-family: 'Cambria';
+    font-size: 0.5rem;
+  }
+  .imgForMostOrderContainer{
+      width: 100%;
+      display:block;  
+      border-radius: 10px;
+  }
+  
+  .styleFora{
+    text-decoration:none; 
+    color:black;
+  }
+
+h3 {
+  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+}
+ 
+
+
+li p {
+  font: 200 12px/1.5 Georgia, Times New Roman, serif;
+}
+ 
+li {
+  padding: 10px;
+  overflow: auto;
+}
+ 
+li:hover {
+  background: #eee;
+  cursor: pointer;
+}	
