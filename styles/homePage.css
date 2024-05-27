@@ -1,14 +1,4 @@
-#body {
-    background-color: #fff;
-    font-family: 'Cambria';
-    color: #000;
-  }
-  .backgroundPhoto{
-    background-image: url('imgesForStyles/bakgroundPage.png'); /* Replace with any page if you want to change the image */
-      background-position: center;
-      background-repeat: repeat;
-      z-index: -1
-  }
+
   .headerOfParagraphFontForLast10AddedServices{
     font-family: 'Cambria';
     font-size: 1.3rem;
@@ -39,9 +29,6 @@
     font-size: 3rem;
   } 
 
-  
-  
-  
   #mostServicesOrder {
     float:right;
     display: inline-block;
