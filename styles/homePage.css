@@ -14,9 +14,8 @@
     border-radius: 10px;
   }
   
-  #last10AddedServices {
+  #Last10AddedServices {
     float: left;
-    display: inline-block;
     text-align: center;
     margin: 10px 30px;
     width: 70%;
@@ -25,12 +24,15 @@
     border-radius: 10px;
     box-shadow: 0px 30px 80px 0px rgba(0, 0, 0, 0.2);
   }
+  #Last10AddedServices h1 {
+    margin-left: 4%;
+    text-align: left;
+  }
   .headerForLast10AddedServices{
     font-size: 3rem;
   } 
 
-  #mostServicesOrder {
-    float:right;
+  #MostOrder {
     display: inline-block;
     text-align: center;
     margin: 10px 50px;
@@ -44,15 +46,15 @@
     font-family: 'Cambria';
     font-size: 0.8rem;
   }
-  .paragraphFontForMostOrder{
+  .paragraphFontMostOrder{
     font-family: 'Cambria';
     font-size: 0.5rem;
   }
-  .imgForMostOrderContainer{
-      width: 100%;
-      display:block;  
-      border-radius: 10px;
-  }
+  .imgMostOrderContainer{
+    width: 100%;
+    display:block;  
+    border-radius: 10px;
+}
   
   .styleFora{
     text-decoration:none; 
