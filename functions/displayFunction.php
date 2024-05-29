@@ -1,9 +1,23 @@
 <?php
-function displayServices($result, $numServices, $listType, $title){
-    echo "<section id='".$listType."'>
-    <br>
-    <h1>".$title."</h1>
-    <br>"; 
+function displayServices($result, $numServices, $listType, $title, $isSearch)
+{
+
+    if ($isSearch) {
+        echo '
+        <section id="searchPage">
+        <br><br>
+            <form action="search.php" method="post" > 
+                <div class="InputContainer">
+                    <input placeholder="Search.." id="input" class="input" name="search" type="text">
+                </div><br><br>
+            </form>    
+    ';
+    }else {
+        echo "<section id='" . $listType . "'><br>";
+    }    
+    echo "
+            <h1>" . $title . "</h1>
+        <br>";
     $myArray = [];
     $i = 0;
     echo '<ul>';
@@ -13,17 +27,17 @@ function displayServices($result, $numServices, $listType, $title){
             $tit = $row["title"];
             $descr = $row["description"];
             $na = $row["name"];
-            if(!in_array($sid, $myArray)){
-                ?>
+            if (!in_array($sid, $myArray)) {
+?>
                 <p>
                 <form method="post" action="servicePag.php">
-                <?php 
-                $imgName = $row["img_name"]; 
-                $myArray[] = $sid; 
-                echo "<a href='servicePag.php?value=".$sid."' class='styleFora'><li>
-                <img class='img".$listType."Container' src='img/".$imgName."' />
-                <h3 class='headerOfParagraphFontFor".$listType."'>".$tit."</h3><p class='paragraphFontFor".$listType."'>".$descr."</p>
-                <p class='paragraphFont".$listType."'>Service provider: ".$na."</p></li></a></form>";
+<?php
+                $imgName = $row["img_name"];
+                $myArray[] = $sid;
+                echo "<a href='servicePag.php?value=" . $sid . "' class='styleFora'><li>
+                <img class='img" . $listType . "Container' src='img/" . $imgName . "' />
+                <h3 class='headerOfParagraphFontFor" . $listType . "'>" . $tit . "</h3><p class='paragraphFont" . $listType . "'>" . $descr . "</p>
+                <p class='paragraphFont" . $listType . "'>Service provider: " . $na . "</p></li></a></form>";
                 $i++;
             }
         }
@@ -32,4 +46,4 @@ function displayServices($result, $numServices, $listType, $title){
     }
     echo '</ul><br>
     </section>';
-}?>
+} ?>

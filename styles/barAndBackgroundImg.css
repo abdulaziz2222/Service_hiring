@@ -1,13 +1,18 @@
-#body {
+/*lines from google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+body {
     background-color: #fff;
-    font-family: 'Cambria';
-    color: #000;
+    font-family: "Poppins" ;
+    font-weight: 400;
+    font-style: normal ;
+    color: #000 ;
   }
   .backgroundPhoto{
     background-image: url('imgesForStyles/bakgroundPage.png'); /* Replace with any page if you want to change the image */
-      background-position: center;
-      background-repeat: repeat;
-      z-index: -1
+    background-position: center;
+    background-repeat: repeat;
+    z-index: -1
   }
 
 

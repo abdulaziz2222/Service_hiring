@@ -14,11 +14,11 @@
     unset($_SESSION['error_message']);}  ?>
     <div class="topnav">
         <a class="active" href="homepage.php">Home</a>
-        <a href="Profile.php">My account</a>  <!--add the link -->
-        <a href="add-item.html">Post a service</a> <!--add the link -->
-        <a href="signout.php">Sign out</a>  <!--add the link -->
+        <a href="Profile.php">My account</a>  
+        <a href="add-item.html">Post a service</a> 
+        <a href="signout.php">Sign out</a> 
         <div class="search-container">
-        <form action="search.php" method="post" > <!--add the link -->
+        <form action="search.php" method="post" > 
             <input type="text" placeholder="Search.." name="search">
             <button type="submit" name="submit">Search</button>
         </form>
@@ -45,7 +45,8 @@ $numServicesShown=5;
 $type ='Last10AddedServices';
 $result = $con->query($sql);
 $title ="Latest 10 Available Services";
-displayServices($result,$numServicesShown,$type,$title);
+$isSearch = false;
+displayServices($result,$numServicesShown,$type,$title,$isSearch);
 
 
 //display most order services
@@ -55,8 +56,11 @@ join user_info as ui on ui.phoneNumber = si.phone order by numOfOrders desc";
 $numServicesShown=5;
 $type ='MostOrder';
 $result = $con->query($sql2);
-$title ="Most Services Order";
-displayServices($result,$numServicesShown,$type,$title);
+$title ="Most demanded";
+displayServices($result,$numServicesShown,$type,$title,$isSearch);
 
 ?>
+<footer>
+
+</footer>
 </body></html>
