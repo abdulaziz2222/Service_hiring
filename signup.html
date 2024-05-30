@@ -58,7 +58,7 @@
     // Name validation
     if (!name.match(namePattern)) {
       isValid = false;
-      document.getElementById('errorName').textContent = 'Invalid name';
+      document.getElementById('errorName').textContent = 'Name must contain only letters';
     } else {
       document.getElementById('errorName').textContent = '';
     }
@@ -66,7 +66,7 @@
     // Email validation
     if (!email.match(emailPattern)) {
       isValid = false;
-      document.getElementById('errorEmail').textContent = 'Invalid email';
+      document.getElementById('errorEmail').textContent = 'Invalid email format. It should look like: example@example.com';
     } else {
       document.getElementById('errorEmail').textContent = '';
     }
@@ -74,18 +74,21 @@
     // Phone validation
     if (!phone.match(phonePattern)) {
       isValid = false;
-      document.getElementById('errorPhone').textContent = 'Invalid phone number';
+      document.getElementById('errorPhone').textContent = 'Invalid phone number format. It should contain exactly 10 digits.';
     } else {
       document.getElementById('errorPhone').textContent = '';
     }
 
     // Password validation
-    if (password.length < 6) {
-      isValid = false;
-      document.getElementById('errorPassword').textContent =  'Password must be at least 6 characters long';
-    } else {
-      document.getElementById('errorPassword').textContent =  '';
-    }
+    if (password.length < 8) {
+  isValid = false;
+  document.getElementById('errorPassword').textContent = 'Password must be at least 8 characters long.';
+  } else if(!/[A-Z]/.test(password)){
+  isValid = false;
+  document.getElementById('errorPassword').textContent = 'contain at least one uppercase letter.';
+  } else{
+  document.getElementById('errorPassword').textContent = '';
+  }
 
     return isValid;
   }
