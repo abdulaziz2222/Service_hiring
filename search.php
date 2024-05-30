@@ -20,7 +20,7 @@
         <a href="signout.php">Sign out</a> 
         <div class="search-container">
         <form action="search.php" method="post" > 
-            <input type="text" placeholder="Search.." name="search">
+            <input type="text" placeholder="Search.." name="search" required>
             <button type="submit" name="submit">Search</button>
         </form>
     </div>
@@ -48,7 +48,7 @@ where description LIKE '%$ser%' or title LIKE '%$ser%' order by service_ID desc"
 $numServicesShown=5;
 $type ='Last10AddedServices';
 $result = $con->query($sql);
-$title ="Result for '$ser '";
+$title ="Results for '$ser '";
 $isSearch = true;
 displayServices($result,$numServicesShown,$type,$title,$isSearch);
 

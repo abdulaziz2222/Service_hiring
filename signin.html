@@ -3,20 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Login</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel="stylesheet" href="signinstyle.css">
-
+  <link rel="stylesheet" href="styles/signinstyle.css">
+  <link rel="stylesheet" href="styles/signinstyle2.css">
 </head>
-<body>
-<!-- partial:index.partial.html -->
+<body class="backgroundPhoto">
 <div id="login-form-wrap">
   <h2>Login</h2>
   <form id="login-form" method="post" action="signin.php">
     <p>
-    <input type="email" id="email" name="email" placeholder="Email Address" required><i class="validation"><span></span><span></span></i>
+    <input type="email" id="email" name="email" placeholder="Email Address" required><i class="validation"></i>
     </p>
     <p>
-    <input type="text" id="password" name="password" placeholder="Password" style="    -webkit-text-security: disc; text-security: disc;" required><i class="validation"><span></span><span></span></i>
+    <input type="text" id="password" name="password" placeholder="Password" style="    -webkit-text-security: disc; text-security: disc;" required>
+    <i class="validation"></i>
     </p>
     <p>
     <input type="submit" id="login" value="Login">
@@ -24,9 +23,7 @@
   </form>
   <div id="create-account-wrap">
     <p>Not a member? <a href="signup.html">Create Account</a><p>
-  </div><!--create-account-wrap-->
-</div><!--login-form-wrap-->
-<!-- partial -->
-  
+  </div>
+</div>
 </body>
 </html>

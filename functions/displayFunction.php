@@ -8,7 +8,7 @@ function displayServices($result, $numServices, $listType, $title, $isSearch)
         <br><br>
             <form action="search.php" method="post" > 
                 <div class="InputContainer">
-                    <input placeholder="Search.." id="input" class="input" name="search" type="text">
+                    <input placeholder="Search.." id="input" class="input" name="search" type="text" required>
                 </div><br><br>
             </form>    
     ';

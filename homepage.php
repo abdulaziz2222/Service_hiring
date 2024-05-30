@@ -19,7 +19,7 @@
         <a href="signout.php">Sign out</a> 
         <div class="search-container">
         <form action="search.php" method="post" > 
-            <input type="text" placeholder="Search.." name="search">
+            <input type="text" placeholder="Search.." name="search" required>
             <button type="submit" name="submit">Search</button>
         </form>
     </div>
