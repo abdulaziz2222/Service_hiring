@@ -14,15 +14,15 @@
     echo "<script>alert('" . $_SESSION['error_message'] . "');</script>"; // Display it as a JavaScript alert
     unset($_SESSION['error_message']);}  ?>
     <div class="topnav">
-        <a class="active" href="homepage.php">Home</a>
-        <a href="Profile.php">My account</a>  
-        <a href="add-item.html">Post a service</a> 
-        <a href="signout.php">Sign out</a> 
-        <div class="search-container">
-        <form action="search.php" method="post" > 
-            <input type="text" placeholder="Search.." name="search" required>
-            <button type="submit" name="submit">Search</button>
-        </form>
+    <a class="active" href="homepage.php">Home</a>
+    <a href="Profile.php">My account</a>
+    <a href="add-item.html">Post a service</a>
+    <a href="signout.php">Sign out</a>  
+    <div class="search-container">
+    <form action="search.php" method="post">
+        <input type="text" placeholder="Search.." name="search" required>
+        <button type="submit"  name="submit" >Search</button>
+    </form>
     </div>
 </div>
 

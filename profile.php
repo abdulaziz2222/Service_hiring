@@ -188,18 +188,18 @@ if ($con->connect_error) {
     die("Connection failed: " . $con->connect_error);
 } ?>
     <div class="container">
-        <div class="topnav">
-            <a class="active" href="homepage.php">Home</a>
-            <a href="profile.php">My account</a>
-            <a href="add-item.html">Post a Service</a>
-            <a href="signout.php">Sign Out</a>
-            <div class="search-container">
-                <form action="search.php" method="post">
-                    <input style="padding-right: 0px;" type="text" placeholder="Search.." name="search" >
-                    <button style="padding-left: 0px;" type="submit">Search</button>
-                </form>
-            </div>
-        </div>
+    <div class="topnav">
+    <a class="active" href="homepage.php">Home</a>
+    <a href="Profile.php">My account</a>
+    <a href="add-item.html">Post a service</a>
+    <a href="signout.php">Sign out</a>  
+    <div class="search-container">
+    <form action="search.php" method="post">
+        <input type="text" placeholder="Search.." name="search" required>
+        <button type="submit"  name="submit" >Search</button>
+    </form>
+    </div>
+</div>
         <br>
         <h2>Hi <?php echo $_SESSION["name"];?></h2>
         <a href="editProfile.php" style=" margin: 25px 120px;"><button class='editButton' type='submit' name='accept' value='$oID'>Edit my account</button></a>

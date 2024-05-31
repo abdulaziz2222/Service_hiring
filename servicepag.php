@@ -163,11 +163,18 @@ button:hover {
 </head>
 <body>
     <div class="container">
-    <div class="topnav" style="display: block;">
-        <a class="active" href="homepage.php">Home</a>
-        <a href="profile.php">My account</a>  
-        <a href="add-item.html">Post a service</a> 
-        <a href="signout.php">Sign out</a> </div>
+    <div class="topnav">
+    <a class="active" href="homepage.php">Home</a>
+    <a href="Profile.php">My account</a>
+    <a href="add-item.html">Post a service</a>
+    <a href="signout.php">Sign out</a>  
+    <div class="search-container">
+    <form action="search.php" method="post">
+        <input type="text" placeholder="Search.." name="search" required>
+        <button type="submit"  name="submit" >Search</button>
+    </form>
+    </div>
+</div>
         <br>
         <?php
      if (isset($_SESSION['error_message'])) {

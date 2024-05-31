@@ -147,16 +147,16 @@ li:hover {
     padding: 0px 0 20% 0;
     border-radius: 4px;
     box-shadow: 0px 30px 50px 0px rgba(0, 0, 0, 0.2);">
-    <div class="topnav">
-        <a class="active" href="homepage.php">Home</a>
-        <a href="Profile.php">My account</a>  <!--add the link -->
-        <a href="add-item.html">Post a service</a> <!--add the link -->
-        <a href="signout.php">Sign out</a>  <!--add the link -->
-        <div class="search-container">
-        <form action="search.php" method="post" > <!--add the link -->
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit" name="submit">Search</button>
-        </form>
+<div class="topnav">
+    <a class="active" href="homepage.php">Home</a>
+    <a href="Profile.php">My account</a>
+    <a href="add-item.html">Post a service</a>
+    <a href="signout.php">Sign out</a>  
+    <div class="search-container">
+    <form action="search.php" method="post">
+        <input type="text" placeholder="Search.." name="search" required>
+        <button type="submit"  name="submit" >Search</button>
+    </form>
     </div>
 </div>
 <br>
