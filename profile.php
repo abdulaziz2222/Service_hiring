@@ -209,7 +209,7 @@ if ($con->connect_error) {
             <ul>
                 <?php
                 $phon =$_SESSION['phone'];
-                $sql = 'SELECT ui.phoneNumber as ownerphone,title,description,img_name, o.phoneNumber as requestedphone
+                $sql = 'SELECT ui.phoneNumber as ownerphone,si.title,description,img_name, o.phoneNumber as requestedphone
                 ,ui.name as ownerName,o.order_service_id, `condition` FROM `order` AS o JOIN service_item AS si ON o.service_ID = si.service_ID 
                 JOIN user_info AS ui ON si.phone = ui.phoneNumber Join imagesofservice as ios on si.service_ID = ios.serviceID  WHERE ui.phoneNumber = '."$phon".' ORDER BY order_service_id DESC';
                 $result = $con->query($sql);
@@ -278,7 +278,7 @@ if ($con->connect_error) {
             <ul>
                 <?php
                 $phon =$_SESSION['phone'];
-                $sql = 'SELECT ui.phoneNumber as ownerphone,title,description,img_name, o.phoneNumber as requestedphone
+                $sql = 'SELECT ui.phoneNumber as ownerphone,si.title,description,img_name, o.phoneNumber as requestedphone
                 ,ui.name as ownerName,o.order_service_id, `condition` FROM `order` AS o JOIN service_item AS si ON o.service_ID = si.service_ID 
                 JOIN user_info AS ui ON si.phone = ui.phoneNumber Join imagesofservice as ios on si.service_ID = ios.serviceID  WHERE o.phoneNumber =  '."$phon".'  ORDER BY order_service_id DESC';
                 $result = $con->query($sql);

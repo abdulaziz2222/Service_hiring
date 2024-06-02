@@ -13,6 +13,11 @@ session_start();
         die("Cannot connect to db ".mysqli_connect_error());
     }
     $sid =$_POST["ord"];
+    $titleOrder=$_POST["title"];
+    $priceOrder=$_POST["price"];
+    $startDate=$_POST["start_date"];
+    $endDate=$_POST["end_date"];
+
     $ph =$_SESSION["phone"];
     $areyoutheonerQurey ="SELECT phone FROM service_item where service_ID = $sid";
     $phoneofoner = mysqli_query($con,$areyoutheonerQurey);
@@ -20,7 +25,8 @@ session_start();
         $rowN = mysqli_fetch_assoc($phoneofoner);
         $valueP = $rowN['phone'];
     if($ph!=$valueP){
-    $query = "INSERT INTO `order` (`condition`, `order_service_id`, `phoneNumber`, `service_ID`) VALUES ('waiting',NULL,$ph,$sid)";
+    $query = "INSERT INTO `order`(`order_service_id`, `condition`, `phoneNumber`, `service_ID`, `title`, `price`, `startDate`, `endDate`) VALUES (null,'wating','".$ph."',
+    '".$sid."','".$titleOrder."','".$priceOrder."','".$startDate."','".$endDate."')";
     if(mysqli_connect_errno()){
         die("Cannot connect to db ".mysqli_connect_error());
     }
