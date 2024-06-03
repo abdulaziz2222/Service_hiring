@@ -25,7 +25,7 @@ session_start();
         $rowN = mysqli_fetch_assoc($phoneofoner);
         $valueP = $rowN['phone'];
     if($ph!=$valueP){
-    $query = "INSERT INTO `order`(`order_service_id`, `condition`, `phoneNumber`, `service_ID`, `title`, `price`, `startDate`, `endDate`) VALUES (null,'wating','".$ph."',
+    $query = "INSERT INTO `order`(`order_service_id`, `condition`, `phoneNumber`, `service_ID`, `title`, `price`, `startDate`, `endDate`) VALUES (null,'waiting','".$ph."',
     '".$sid."','".$titleOrder."','".$priceOrder."','".$startDate."','".$endDate."')";
     if(mysqli_connect_errno()){
         die("Cannot connect to db ".mysqli_connect_error());
@@ -36,7 +36,12 @@ session_start();
     $result = mysqli_query($con,$query2);
 
     mysqli_close($con);
+    $_SESSION['status']='requested';
+    $_SESSION['StartDate']=$startDate;
+    $_SESSION['endDate']=$endDate;
+
     header("location:profile.php");
+
     }else{
         mysqli_close($con);
         $_SESSION['error_message'] = "You cannot request your own service.";
