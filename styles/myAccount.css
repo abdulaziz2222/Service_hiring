@@ -1,0 +1,123 @@
+
+#profileBio{
+    text-align: center;
+    margin: auto;
+    width: 85%;
+    height: 100%;
+    background-color: #FFF;
+    border-radius: 10px;
+    box-shadow: 0px 0px 80px 0px rgba(0, 0, 0, 0.2);
+}
+
+.rounded-circle{
+    border-radius: 50%;
+    width: 10rem;
+    height: 10rem;
+}
+
+.accepTbutton {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #4CAF50; /* Green for accept */
+    color: white;
+    margin-left: 5px;
+}
+
+.refusebutton{
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #4CAF50; /* Green for accept */
+    color: white;
+    margin-left: 5px;
+    background-color: #f44336; /* Red for refuse */
+}
+
+/*  */
+#searchPage ul li{
+margin-bottom: 3%;
+}
+#searchPage ul li img{
+float: left;
+width: 15%;
+}
+
+#searchPage h1 {
+    margin-left: 4%;
+    text-align: left;
+}
+
+    /*styles for alert*/
+    .alert {
+        position: relative;
+        top: 10;
+        left: 0;
+        width: auto;
+        height: auto;
+        padding: 10px;
+        margin: 10px;
+        line-height: 1.8;
+        border-radius: 5px;
+        cursor: hand;
+        cursor: pointer;
+        font-family: sans-serif;
+        font-weight: 400;
+    }
+
+    .alertCheckbox {
+        display: none;
+    }
+
+    :checked+.alert {
+        display: none;
+    }
+
+    .alertText {
+        display: table;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .alertClose {
+        float: right;
+        padding-top: 5px;
+        font-size: 10px;
+    }
+
+    .clear {
+        clear: both;
+    }
+
+    .info {
+        background-color: #EEE;
+        border: 1px solid #DDD;
+        color: #999;
+    }
+
+    .success {
+        background-color: #EFE;
+        border: 1px solid #DED;
+        color: #9A9;
+    }
+
+    .notice {
+        background-color: #EFF;
+        border: 1px solid #DEE;
+        color: #9AA;
+    }
+
+    .warning {
+        background-color: #FDF7DF;
+        border: 1px solid #FEEC6F;
+        color: #C9971C;
+    }
+
+    .error {
+        background-color: #FEE;
+        border: 1px solid #EDD;
+        color: #A66;
+    }
