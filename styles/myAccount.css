@@ -1,4 +1,13 @@
 
+.editButton {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #2196F3;
+    color: white;
+}
+
 #profileBio{
     text-align: center;
     margin: auto;
@@ -37,9 +46,7 @@
 }
 
 /*  */
-#searchPage ul li{
-margin-bottom: 3%;
-}
+
 #searchPage ul li img{
 float: left;
 width: 15%;
