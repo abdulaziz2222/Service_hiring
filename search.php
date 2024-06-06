@@ -53,7 +53,8 @@ $type ='Last10AddedServices';
 $result = $con->query($sql);
 $title ="Results for '$ser '";
 $isSearch = true;
-displayServices($result,$numServicesShown,$type,$title,$isSearch);
+$isEditPage = false;
+displayServices($result,$numServicesShown,$type,$title,$isSearch,$isEditPage);
 
 
 include 'functions/footer.php';

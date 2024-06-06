@@ -39,7 +39,7 @@ if ($con->connect_error) {
             $query = "SELECT phoneNumber,user_id,password,bio,userImg,name FROM user_info WHERE user_id='$userID'";
             $np = mysqli_query($con,$query);
             if ($np) {
-              $userRow = mysqli_fetch_assoc($np);
+                $userRow = mysqli_fetch_assoc($np);
               $userName=$userRow["name"];
               $userBio=$userRow["bio"];
               $userImg=$userRow["userImg"];

@@ -1,18 +1,16 @@
 <?php
-function displayServices($result, $numServices, $listType, $title, $isSearch)
+function displayServices($result, $numServices, $listType, $title, $isSearch,$isEditPage)
 {
 
     if ($isSearch) {
-        echo '
-        <section id="searchPage">
-        <br><br>
-            <form action="search.php" method="post" > 
+        echo '<section id="searchPage"><br><br>';
+        if(!$isEditPage){
+            echo '<form action="search.php" method="post" > 
                 <div class="InputContainer">
                     <input placeholder="Search.." id="input" class="input" name="search" type="text" required>
                 </div><br><br>
-            </form>    
-    ';
-    }else {
+            </form>';}
+        }else {
         echo "<section id='" . $listType . "'><br>";
     }    
     echo "
@@ -28,16 +26,25 @@ function displayServices($result, $numServices, $listType, $title, $isSearch)
             $descr = $row["description"];
             $na = $row["name"];
             if (!in_array($sid, $myArray)) {
+                if(!$isEditPage){
 ?>
                 <p>
                 <form method="post" action="servicePag.php">
 <?php
-                $imgName = $row["img_name"];
+                }$imgName = $row["img_name"];
                 $myArray[] = $sid;
                 echo "<a href='servicePag.php?value=" . $sid . "' class='styleFora'><li>
                 <img class='img" . $listType . "Container' src='img/" . $imgName . "' />
-                <h3 class='headerOfParagraphFontFor" . $listType . "'>" . $tit . "</h3><p class='paragraphFont" . $listType . "'>" . $descr . "</p>
-                <p class='paragraphFont" . $listType . "'>Service provider: " . $na . "</p></li></a></form>";
+                <h3 class='headerOfParagraphFontFor" . $listType . "'>" . $tit . "</h3><p class='paragraphFont" . $listType . "'>" . $descr . "</p>";
+                if($isEditPage){
+                    echo "<br><div class='service-actions'>
+                            <form action='ServiceEditedPage.php' method='post'>
+                                <input type='hidden' name='service_id' value='5'/>
+                            <button class='editButton' type='submit' name='edit' value=".$sid.">Edit</button>
+                    </form>
+                </div>";
+                }
+                echo "</li></a></form>";
                 $i++;
             }
         }

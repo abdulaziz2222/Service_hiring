@@ -51,7 +51,8 @@ join user_info as ui on ui.phoneNumber = si.phone order by si.service_ID desc";
     $result = $con->query($sql);
     $title = "Latest 10 Available Services";
     $isSearch = false;
-    displayServices($result, $numServicesShown, $type, $title, $isSearch);
+    $isEditPage = false;
+    displayServices($result, $numServicesShown, $type, $title, $isSearch,$isEditPage);
 
 
     //display most order services
@@ -62,8 +63,7 @@ join user_info as ui on ui.phoneNumber = si.phone order by numOfOrders desc";
     $type = 'MostOrder';
     $result = $con->query($sql2);
     $title = "Most demanded";
-    displayServices($result, $numServicesShown, $type, $title, $isSearch);
-
+    displayServices($result, $numServicesShown, $type, $title, $isSearch,$isEditPage);
     include 'functions/footer.php';
     //Footer
     footer();
