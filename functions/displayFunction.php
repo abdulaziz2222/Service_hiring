@@ -43,6 +43,8 @@ function displayServices($result, $numServices, $listType, $title, $isSearch,$is
                             <button class='editButton' type='submit' name='edit' value=".$sid.">Edit</button>
                     </form>
                 </div>";
+                }else{
+                    echo "<p class='paragraphFont" . $listType . "'>Service provider: " . $na . "</p>";
                 }
                 echo "</li></a></form>";
                 $i++;
