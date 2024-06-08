@@ -1,14 +1,12 @@
 h2 {
     font-weight: 300;
     text-align: center;
-  }
-  
+    }
 
-
-  #login-form {
+#login-form {
     padding: 0 60px;
-  }
-  #login-form-wrap{
+    }
+#login-form-wrap{
     background-color: #fff;
     width: 60%;
     margin: auto;
@@ -19,7 +17,7 @@ h2 {
 
 }
 
-  #login-form-wrap input {
+#login-form-wrap input {
     display: block;
     box-sizing: border-box;
     width: 100%;
@@ -27,10 +25,10 @@ h2 {
     height: 60px;
     line-height: 60px;
     border-radius: 4px;
-  }
+}
   
-  #login-form-wrap input[type="text"],
-  input[type="email"],input[type="password"] {
+#login-form-wrap input[type="text"],
+input[type="email"],input[type="password"] {
     width: 100%;
     padding: 0 0 0 10px;
     margin: 0;
@@ -128,4 +126,4 @@ h2 {
         vertical-align: middle;
         white-space: nowrap;
         width: 60%;
-      }
+    }

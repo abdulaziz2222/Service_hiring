@@ -22,7 +22,7 @@ if (!isset($_SESSION["login"]))
     <div class="topnav">
         <a class="active" href="homepage.php">Home</a>
         <a href="Profile.php">My account</a>
-        <a href="add-item.html">Post a service</a>
+        <a href="postService.php">Post a service</a>
         <a href="signout.php">Sign out</a>
     </div>
     <br><br>

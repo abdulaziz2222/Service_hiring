@@ -150,7 +150,7 @@ box-shadow: 0px 30px 50px 0px rgba(0, 0, 0, 0.2);">
     <div class="topnav">
     <a class="active" href="homepage.php">Home</a>
     <a href="Profile.php">My account</a>
-    <a href="add-item.html">Post a service</a>
+    <a href="postService.php">Post a service</a>
     <a href="signout.php">Sign out</a>  
     <div class="search-container">
     <form action="search.php" method="post">
