@@ -8,6 +8,9 @@ if (!isset($_SESSION["login"]))
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="styles/itemsEdit.css">
     <link rel="stylesheet" href="styles/itemsEdit2.css">
+    <link rel="stylesheet" href="styles/footerStyle.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
     <title>Post service</title>
 
     <style>
@@ -118,7 +121,10 @@ if (!isset($_SESSION["login"]))
 
                 var name = document.getElementById('name').value.trim();
                 var email = document.getElementById('email').value.trim();
-            </script>
+            </script></form></div>
+        <?php       include 'functions/footer.php';
+                    //Footer
+                    footer(); ?>
 </body>
 
 </html>
