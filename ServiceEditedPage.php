@@ -1,169 +1,51 @@
-<?php 
-    session_start();
-    if(!isset($_SESSION["login"]))
-        header("location:signin.html?eror=Please Sign In!"); ?>
+<?php session_start();
+if (!isset($_SESSION["login"]))
+    header("location:signin.html?eror=Please Sign In!"); ?>
 <!DOCTYPE html>
-<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Service</title>
-    <link rel="stylesheet" href="add-item.css">
+    <link rel="stylesheet" href="styles/barAndBackgroundImg.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="styles/itemsEdit.css">
+    <link rel="stylesheet" href="styles/itemsEdit2.css">
+    <link rel="stylesheet" href="styles/footerStyle.css">
+    <link rel="stylesheet" href="styles/breadcrumb.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <title>Edit service</title>
+
     <style>
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #9f9da7;
-    margin: 0;
-    padding: 20px;
-}
-
-.container, div[style] {
-    background-color: #fff;
-    font-weight: 300;
-    width: 80%;
-    margin: -8px auto;
-    text-align: center;
-    padding: 20px 0;
-    border-radius: 4px;
-    box-shadow: 0px 30px 50px 0px rgba(0, 0, 0, 0.2);
-}
-
-.topnav {
-    overflow: hidden;
-    background-color: #e9e9e9;
-}
-
-.topnav a {
-    float: left;
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-}
-
-.topnav a:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-.topnav a.active {
-    background-color: #2196F3;
-    color: white;
-}
-
-.topnav .search-container {
-    float: right;
-}
-
-.topnav input[type=text], .topnav button {
-    padding: 6px;
-    margin-top: 8px;
-    font-size: 17px;
-    border: none;
-}
-
-.topnav .search-container button {
-    float: right;
-    background: #ddd;
-    cursor: pointer;
-}
-
-.topnav .search-container button:hover {
-    background: #ccc;
-}
-
-@media screen and (max-width: 600px) {
-    .topnav .search-container {
-        float: none;
-    }
-    .topnav a, .topnav input[type=text], .topnav .search-container button {
-        float: none;
-        display: block;
-        text-align: left;
-        width: 100%;
-        margin: 0;
-        padding: 14px;
-    }
-    .topnav input[type=text] {
-        border: 1px solid #ccc;  
-    }
-}
-
-.inputsepdate {
-    width: 40%;
-    padding: 10px;
-    margin: 20px auto;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    display: inline;
-}
-
-.button-19 {
-    appearance: button;
-    background-color: #3ca9e2;
-    border: solid transparent;
-    border-radius: 16px;
-    border-width: 0 0 4px;
-    color: #FFFFFF;
-    cursor: pointer;
-    font-family: din-round, sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: .8px;
-    line-height: 20px;
-    margin: 0 auto;
-    outline: none;
-    padding: 13px 16px;
-    text-align: center;
-    text-transform: uppercase;
-    touch-action: manipulation;
-    transition: filter .2s;
-    user-select: none;
-    vertical-align: middle;
-    white-space: nowrap;
-    width: 30%;
-}
-
-.button-19:hover:not(:disabled) {
-    filter: brightness(1.1);
-}
-
-.button-19:active {
-    background-color: #318AC9;
-    border-width: 4px 0 0;
-}
+        .preImg {
+            border-radius: 10px;
+            width: 23%;
+            height: 10%;
+        }
     </style>
 </head>
-<body>
-<div style="
-background-color: #fff;
-font-weight: 300;
-width: 80%;
-margin: -8px auto;
-text-align: center;
-padding: 0px 0 20% 0;
-border-radius: 4px;
-box-shadow: 0px 30px 50px 0px rgba(0, 0, 0, 0.2);">
+
+<body id="body" class="backgroundPhoto">
     <div class="topnav">
-    <a class="active" href="homepage.php">Home</a>
-    <a href="Profile.php">My account</a>
-    <a href="postService.php">Post a service</a>
-    <a href="signout.php">Sign out</a>  
-    <div class="search-container">
-    <form action="search.php" method="post">
-        <input type="text" placeholder="Search.." name="search" required>
-        <button type="submit"  name="submit" >Search</button>
-    </form>
+        <a class="active" href="homepage.php">Home</a>
+        <a href="Profile.php">My account</a>
+        <a href="postService.php">Post a service</a>
+        <a href="signout.php">Sign out</a>
+        <div class="search-container">
+            <form action="search.php" method="post">
+                <input type="text" placeholder="Search.." name="search" required>
+                <button type="submit" name="submit">Search</button>
+            </form>
+        </div>
     </div>
-</div>
-    <h1>Edit Service</h1>
+    <ul class="breadcrumb">
+        <li><a href="Profile.php">my account</a></li>
+        <li><a href="editServices.php">my services</a></li>
+        <li>selected service</li>
+    </ul>
+    <!-- -->
     <?php 
     $sid =$_POST["edit"];
-    $title ='';
-    $description ="";
+    $tit ='';
+    $descr ="";
     include 'db_config.php';
 $con =mysqli_connect(DBHOST,DBUSER,DBPWD,DBNAME);
 if ($con->connect_error) {
@@ -171,8 +53,9 @@ if ($con->connect_error) {
     }
 $renon ="";
 $phone =$_SESSION["phone"];  
+$imgesOfService = [];
 $sql = "SELECT title,description,img_name,si.service_ID,phone,ui.name FROM service_item as si join imagesofservice as ios 
-on si.service_ID = ios.serviceID join user_info as ui on ui.phoneNumber = si.phone where si.service_ID=".$sid." order by service_ID desc ";
+on si.service_ID = ios.serviceID join user_info as ui on ui.phoneNumber = si.phone where si.service_ID=".$sid." ";
 $result = $con->query($sql);
 if ($result->num_rows > 0) {
     while (($row = $result->fetch_assoc()) ) {
@@ -180,50 +63,122 @@ if ($result->num_rows > 0) {
         $tit = $row["title"];
         $descr = $row["description"];
         $na = $row["name"];
-        if($renon!=$sid){
-        ?>
-        <p>
-        <?php 
-        $imgName = $row["img_name"]; 
-        $renon =$sid;
-        ?> 
-        
-        <form action="update_service.php" method="POST" enctype="multipart/form-data" onsubmit="return validateFileCount()">
-        <label for="title">Title:</label>
-        <input type="text" class="inputsepdate" id="title" name="title" value="<?php echo $tit; ?>" required><br>
-        <label for="description">Description:</label>
-        <input id="description" class="inputsepdate" name="description" value="<?php echo $descr;?>" required ><br>
-        <input style="display: none;" name="sid" value="<?php echo $sid; ?>">
-        <div class="button-19">
-        <label for="im" style="font-size: 14px;">replace images   
-        <input id="im"  type="file" style="display: none;" name="images[]" multiple>
-        <img src="img/upload.png" style="height: 14px;width: 30px;" /></div>
-        <p style="margin-top: 10px; font-size: 0.85rem; color: #666;">
+        $im =$row["img_name"];
+        array_push($imgesOfService, $im);
+    }
+} 
+$imTest =$imgesOfService[0];
+?>
+    <!-- POST service -->
+    <div id="login-form-wrap">
+        <h2>Post new service</h2><br>
+        <form id="login-form" action="update_service.php" method="POST" enctype="multipart/form-data" onsubmit="return validateFileCount()">
+            <p>
+                <input type="text" id="name" name="title" placeholder="Title of your service" value="<?php echo $tit; ?>" maxlength="256" required><i class="validation"></i>
+                <span id="errorName" class="errorMessage">
+                </span>
+            </p><br>
+            <p>
+                <input type="text" id="email" name="description" placeholder="Description of your service" value="<?php echo $descr; ?>" maxlength="700" required><i class="validation"></i>
+                <span id="errorEmail" class="errorMessage">
+                </span>
+                <input style="display: none;" name="sid" value="<?php echo $sid; ?>">
+            </p><br>
+            <p>
+            <div id="fmg">
+                <label for="im" style="font-size: 14px;">Upload images of your service
+                    <img src="img/upload.png" style="height: 14px;width: 30px;" />
+                    <input id="im" type="file" style="display: none;" name="images[]" multiple>
+            </div>
+            <p style="margin-top: 10px; font-size: 0.85rem; color: #666; text-align: center;">
                 Please select up to 4 images.
             </p>
-        <br>
-        <br>
-        <input class="button-19" type="submit" value="save">
-        </form>
-        <?php }
-        }
-    }
-else {
-    echo "No results found.";
-}
-$con->close();
-    ?>
-</div>
-<script>
-    function validateFileCount() {
-        var input = document.getElementById('im');
-        var files = input.files;
-        if (files.length > 4) {
-            alert('You may upload up to 4 images only.');
-            return false;
-        }
-        return true;
-    }
-    </script>
+            </label>
+            <br>
+            <div id="imgPreCon" style="display:inline;padding: 8px; ;padding-bottom: 13rem; margin:2%;">
+            <?php
+            if(!empty($imgesOfService[0])){ ?>
+                <img class="preImg" src="<?php echo 'img/'.$imgesOfService[0].''; ?>" />
+                <?php }else { ?>
+                    <img class="preImg" />
+                <?php } ?>
+                <?php
+            if(!empty($imgesOfService[1])){ ?>
+                <img class="preImg" src="<?php echo 'img/'.$imgesOfService[1].''; ?>" />
+                <?php }else { ?>
+                    <img class="preImg" />
+                <?php } ?>
+                <?php
+            if(!empty($imgesOfService[2])){ ?>
+                <img class="preImg" src="<?php echo 'img/'.$imgesOfService[2].''; ?>" />
+                <?php }else { ?>
+                    <img class="preImg" />
+                <?php } ?>
+                <?php
+            if(!empty($imgesOfService[3])){ ?>
+                <img class="preImg" src="<?php echo 'img/'.$imgesOfService[3].''; ?>" />
+                <?php }else { ?>
+                    <img class="preImg" />
+                <?php } ?>
+            </div>
+            
+            <br>
+            <br>
+            <br>
+            <p style="padding-bottom: 15px;">
+                <input type="submit" id="login" value="save changes">
+                <i class="validation"></i>
+            </p><br>
+            <br>
+            <script>
+                function validateFileCount() {
+                    var input = document.getElementById('im');
+                    var files = input.files;
+                    if (files.length > 4) {
+                        alert('You may upload up to 4 images only.');
+                        return false;
+                    }
+                    return true;
+                }
+
+                const inpFile = document.getElementById("im");
+                const previewContainer = document.getElementById("imgPreCon");
+                const previewImgs = previewContainer.querySelectorAll(".preImg"); // Selects all preview slots
+                
+                inpFile.addEventListener("change", function() {
+                    previewContainer.style.display = "inline"; // Show container initially
+
+                    for (let i = 0; i < previewImgs.length; i++) {
+                        const file = this.files[i];
+
+                        if (file) {
+                            const reader = new FileReader();
+                            reader.addEventListener("load", function() {
+                                previewImgs[i].setAttribute("src", this.result);
+                                previewImgs[i].style.display='inline';
+                            });
+
+                            reader.addEventListener("error", function(error) {
+                                console.error("Error reading file:", error);
+                                // You can display an error message to the user here
+                            });
+
+                            if (!file.type.match("image/")) {
+                                alert("Please select image files only.");
+                                return;
+                            }
+
+                            reader.readAsDataURL(file);
+                        } else {
+                            previewImgs[i].setAttribute("src", ""); // Clear preview if no file selected
+                            previewImgs[i].style.display = "none"; // Show container initially
+                        }
+                    }
+                });
+            </script></form></div>
+        <?php       include 'functions/footer.php';
+                    //Footer
+                    footer(); ?>
 </body>
+
 </html>

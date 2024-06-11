@@ -39,12 +39,12 @@ if (!isset($_SESSION["login"]))
         <h2>Post new service</h2><br>
         <form id="login-form" action="add-item.php" method="POST" enctype="multipart/form-data" onsubmit="return validateFileCount()">
             <p>
-                <input type="text" id="name" name="title" placeholder="Title of your service" required><i class="validation"></i>
+                <input type="text" id="name" name="title" placeholder="Title of your service" maxlength="256" required><i class="validation"></i>
                 <span id="errorName" class="errorMessage">
                 </span>
             </p><br>
             <p>
-                <input type="text" id="email" name="description" placeholder="Description of your service" required><i class="validation"></i>
+                <input type="text" id="email" name="description" placeholder="Description of your service" maxlength="700" required><i class="validation"></i>
                 <span id="errorEmail" class="errorMessage">
                 </span>
             </p><br>
