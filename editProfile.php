@@ -1,207 +1,186 @@
-<?php
-    session_start();
-    if(!isset($_SESSION["login"]))
-        header("location:signin.html?eror=Please Sign In!");    
-?>
+<?php session_start();
+if (!isset($_SESSION["login"]))
+    header("location:signin.html?eror=Please Sign In!"); ?>
 <!DOCTYPE html>
-<html>
+
 <head>
-  <title>Edit my account</title>
-  <!--<link rel="stylesheet" type="text/css" href="styles.css">-->
-  <link rel="stylesheet" href="add-item.css">
-  <style>
-  .inputsepdate {
-    margin: 40px 60px;
-  }  
-  .topnav {
-    overflow: hidden;
-    background-color: #e9e9e9;
-  }
-  
-  .topnav a {
-    float: left;
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-  }
-  
-  .topnav a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-  
-  .topnav a.active {
-    background-color: #2196F3;
-    color: white;
-  }
-  
-  .topnav .search-container {
-    float: right;
-  }
-  
-  .topnav input[type=text] {
-    padding: 6px;
-    margin-top: 8px;
-    font-size: 17px;
-    border: none;
-  }
-  
-  .topnav .search-container button {
-    float: right;
-    padding: 6px;
-    margin-top: 8px;
-    margin-right: 16px;
-    background: #ddd;
-    font-size: 17px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .topnav .search-container button:hover {
-    background: #ccc;
-  }
-  
-  @media screen and (max-width: 600px) {
-    .topnav .search-container {
-      float: none;
-    }
-    .topnav a, .topnav input[type=text], .topnav .search-container button {
-      float: none;
-      display: block;
-      text-align: left;
-      width: 100%;
-      margin: 0;
-      padding: 14px;
-    }
-    .topnav input[type=text] {
-      border: 1px solid #ccc;  
-    }
-  }
-  
-.button-19 {
-    appearance: button;
-    background-color:#3ca9e2;
-    border: solid transparent;
-    border-radius: 16px;
-    border-width: 0 0 4px;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    cursor: pointer;
-    display: inline-block;
-    font-family: din-round,sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: .8px;
-    line-height: 20px;
-    margin: 0;
-    outline: none;
-    overflow: visible;
-    padding: 13px 16px;
-    text-align: center;
-    text-transform: uppercase;
-    touch-action: manipulation;
-    transform: translateZ(0);
-    transition: filter .2s;
-    user-select: none;
-    -webkit-user-select: none;
-    vertical-align: middle;
-    white-space: nowrap;
-    width: 30%;
-  }
-  
-.button-19:after {
-    background-clip: padding-box;
-    background-color: #3ca9e2;
-    border: solid transparent;
-    border-radius: 16px;
-    border-width: 0 0 4px;
-    bottom: -4px;
-    content: "";
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: -1;
-  }
-  
-.button-19:main,
-.button-19:focus {
-    user-select: auto;  
-}
-.button-19:hover:not(:disabled) {
-    filter: brightness(1.1);
-    -webkit-filter: brightness(1.1);
-}  
-.button-19:disabled {
-    cursor: auto;
-}  
-.button-19:active {
-    border-width: 4px 0 0;
-    background: none;
-}	
+    <link rel="stylesheet" href="styles/barAndBackgroundImg.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="styles/itemsEdit.css">
+    <link rel="stylesheet" href="styles/itemsEdit2.css">
+    <link rel="stylesheet" href="styles/footerStyle.css">
+    <link rel="stylesheet" href="styles/breadcrumb.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <title>Edit service</title>
+
+    <style>
+        .preImg {
+            border-radius: 50%;
+            width: 10rem;
+            height: 10rem;
+            margin: 0 40% ;
+            
+        }
+
     </style>
 </head>
-<body>
- 
-<div style="
-background-color: #fff;
-font-weight: 300;
-width: 80%;
-margin: -8px auto;
-text-align: center;
-padding: 0px 0 20% 0;
-border-radius: 4px;
-box-shadow: 0px 30px 50px 0px rgba(0, 0, 0, 0.2);">
-<div class="topnav">
-    <a class="active" href="homepage.php">Home</a>
-    <a href="Profile.php">My account</a>
-    <a href="postService.php">Post a service</a>
-    <a href="signout.php">Sign out</a>  
-    <div class="search-container">
-    <form action="search.php" method="post">
-        <input type="text" placeholder="Search.." name="search" required>
-        <button type="submit"  name="submit" >Search</button>
-    </form>
+
+<body id="body" class="backgroundPhoto">
+    <div class="topnav">
+        <a class="active" href="homepage.php">Home</a>
+        <a href="Profile.php">My account</a>
+        <a href="postService.php">Post a service</a>
+        <a href="signout.php">Sign out</a>
+        <div class="search-container">
+            <form action="search.php" method="post">
+                <input type="text" placeholder="Search.." name="search" required>
+                <button type="submit" name="submit">Search</button>
+            </form>
+        </div>
     </div>
-</div>
-<?php 
-       $name =$_SESSION["name"];
-       $phone =$_SESSION["phone"];
-       $email =$_SESSION["email"];
-       $password =$_SESSION["password"];
-       $id =$_SESSION["id"];
+    <ul class="breadcrumb">
+        <li><a href="Profile.php">my account</a></li>
+        <li>edit my account</li>
+    </ul>
+    <!-- -->
+    <?php 
+    $sid =0;
+    $tit ='';
+    $descr ="";
+    include 'db_config.php';
+$con =mysqli_connect(DBHOST,DBUSER,DBPWD,DBNAME);
+if ($con->connect_error) {
+    die("Connection failed: " . $con->connect_error);
+    }
+$phone =$_SESSION["phone"];  
+$sql = "SELECT `user_id`, `name`, `email`, `password`, `phoneNumber`, `userImg`, `bio` FROM user_info where phoneNumber=".$phone." ";
+$name ="";
+$phoneNumber='';
+$password = "";
+$email="";
+$result = $con->query($sql);
+$imgBio= "";
+$bio="";
+if ($result->num_rows > 0) {
+    while (($row = $result->fetch_assoc()) ) {
+        $name = $row["name"];
+        $phoneNumber = $row["phoneNumber"];
+        $password = $row["password"];
+        $email = $row["email"];
+        $imgBio = $row["userImg"];
+        $bio = $row["bio"];
+    }
+}
 
 ?>
-  <h1>Edit my account</h1>
-  <form action="update_profile.php" method="POST">
-    <label for="name">Name:</label>
-    <input type="text" class="inputsepdate" id="name" name="name" value="<?php echo $name; ?>" required><br>
+    <!-- POST service -->
+    <div id="login-form-wrap">
+        <h2>Edit your account information</h2><br>
+            <div id="imgPreCon"  style="display:inline; padding-bottom: 13rem;">
+            <br>
+            <?php
+            if(!empty($imgBio)){
+                if($imgBio=="https://bootdey.com/img/Content/avatar/avatar7.png"){ ?>
+                <img class="preImg" src="<?php echo 'https://bootdey.com/img/Content/avatar/avatar7.png'; ?>" />
+                <?php } else{?>
+                            <img class="preImg" src="<?php echo 'img/'.$imgBio.''; ?>" />
+            <?php  }}else { ?>
+                    <img class="preImg" />
+                <?php } ?>
+            </div>
+            <br><br>
+            <form id="login-form" action="update_profile.php" method="POST" enctype="multipart/form-data" onsubmit="return validateFileCount()">
 
-    <label for="phone">Phone:</label>
-    <input type="text" class="inputsepdate" id="phone" name="phone" value="<?php echo $phone; ?>" required><br>
+            <div id="fmg">
+                <label for="im" style="font-size: 14px;">replace your profile image
+                    <img src="img/upload.png" style="height: 14px;width: 30px;" />
+                    <input id="im" type="file" style="display: none;" name="accountImg"  >
+                </label>
+            </div>
+            <br><br>
+            <p>
+                <input type="text" id="name" name="bio" value="<?php echo $bio; ?>" maxlength="256" required><i class="validation"></i>
+                <span id="errorName" class="errorMessage">
+                </span>
+            </p><br><br>  
+            <p>
+                <input type="text" id="name" name="name" value="<?php echo $name; ?>" maxlength="256" required><i class="validation"></i>
+                <span id="errorName" class="errorMessage">
+                </span>
+            </p><br>
+            <p>
+                <input type="password" id="name" name="password" value="<?php echo $password; ?>" maxlength="256" required><i class="validation"></i>
+                <span id="errorName" class="errorMessage">
+                </span>
+            </p><br>    
+            <p>
+                <input type="text" id="name" name="phone" value="<?php echo $phoneNumber; ?>" maxlength="256" required><i class="validation"></i>
+                <span id="errorName" class="errorMessage">
+                </span>
+            </p><br>
+            <p>
+                <input type="text" id="email" name="email"  value="<?php echo $email; ?>" maxlength="700" required><i class="validation"></i>
+                <span id="errorEmail" class="errorMessage">
+                </span>
+<!--                <input style="display: none;" name="sid" value="">    -->
+            </p><br>
+            <p>
+            <br>
+            <p style="padding-bottom: 15px;">
+                <input type="submit" id="login" value="save changes">
+                <i class="validation"></i>
+            </p><br>
+            <br>
+            <script>
+                function validateFileCount() {
+                    var input = document.getElementById('im');
+                    var files = input.files;
+                    if (files.length > 1) {
+                        alert('You may upload up to 4 images only.');
+                        return false;
+                    }
+                    return true;
+                }
 
-    <label for="email">Email:</label>
-    <input type="email" class="inputsepdate" id="email" name="email" value="<?php echo $email; ?>" required><br>
+                const inpFile = document.getElementById("im");
+                const previewContainer = document.getElementById("imgPreCon");
+                const previewImgs = previewContainer.querySelectorAll(".preImg"); // Selects all preview slots
+                
+                inpFile.addEventListener("change", function() {
+                    previewContainer.style.display = "inline"; // Show container initially
 
-    <label for="password">Password:</label>
-    <input type="password" class="inputsepdate" id="password" name="password" value="<?php echo $password; ?>" required><br>
-    <br><p><input class="button-19" style="
-      background-color: #3ca9e2;
-      border: none;
-      color: white;
-      padding: 15px 32px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      cursor: pointer;" type="submit" value="SAVE"></p>
-      <input style="display: none;" name="id" value="<?php echo $id; ?>">
-</form></div>
-  <script src="jquery.min.js"></script>
-  <script src="add-item.js"></script>
+                    for (let i = 0; i < previewImgs.length; i++) {
+                        const file = this.files[i];
+
+                        if (file) {
+                            const reader = new FileReader();
+                            reader.addEventListener("load", function() {
+                                previewImgs[i].setAttribute("src", this.result);
+                                previewImgs[i].style.display='inline';
+                            });
+
+                            reader.addEventListener("error", function(error) {
+                                console.error("Error reading file:", error);
+                                // You can display an error message to the user here
+                            });
+
+                            if (!file.type.match("image/")) {
+                                alert("Please select image files only.");
+                                return;
+                            }
+
+                            reader.readAsDataURL(file);
+                        } else {
+                            previewImgs[i].setAttribute("src", ""); // Clear preview if no file selected
+                            previewImgs[i].style.display = "none"; // Show container initially
+                        }
+                    }
+                });
+            </script></form></div>
+        <?php       include 'functions/footer.php';
+                    //Footer
+                    footer(); ?>
 </body>
+
 </html>

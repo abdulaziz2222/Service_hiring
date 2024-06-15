@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="styles/barAndBackgroundImg.css">
   <link rel="stylesheet" href="styles/editServices.css">
   <link rel="stylesheet" href="styles/footerStyle.css">
+  <link rel="stylesheet" href="styles/breadcrumb.css" >
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 
