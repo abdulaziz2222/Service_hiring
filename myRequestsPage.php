@@ -6,7 +6,7 @@ if (!isset($_SESSION["login"]))
 
 <head>
     <meta charset="UTF-8">
-    <title>My Account</title>
+    <title>My requests</title>
     <link rel="stylesheet" href="styles/homePage.css">
     <link rel="stylesheet" href="styles/search.css">
     <link rel="stylesheet" href="styles/barAndBackgroundImg.css">
@@ -37,36 +37,7 @@ if (!isset($_SESSION["login"]))
             </form>
         </div>
     </div>
-    <br><br><?php
-            $userID = $_SESSION["id"];
-            $query = "SELECT phoneNumber,user_id,password,bio,userImg,name FROM user_info WHERE user_id='$userID'";
-            $np = mysqli_query($con, $query);
-            if ($np) {
-                $userRow = mysqli_fetch_assoc($np);
-                $userName = $userRow["name"];
-                $userBio = $userRow["bio"];
-                $userImg = $userRow["userImg"];
-            } else {
-                die("connection to the database went wrong");
-            }
-            /* profile */
-            echo  '<div id="profileBio"><br>';
-                if($userImg=="https://bootdey.com/img/Content/avatar/avatar7.png"){ ?>
-                    <img alt="Admin" class="rounded-circle" width="150" src="<?php echo 'https://bootdey.com/img/Content/avatar/avatar7.png'; ?>" />
-                    <?php }else{ 
-                    echo    '<img src="img/' . $userImg . '" alt="Admin" class="rounded-circle" width="150">';
-                    }
-            echo    '<h4>' . $userName . '</h4>
-                <p class="text-secondary mb-1">' . $userBio . '</p>
-                <br>
-                <a href="editProfile.php" style=" margin: 25px 120px;"><button class="editButton" type="submit" 
-                name="accept" value="">Edit my account</button></a>
-                <a href="editServices.php" style=" margin: 25px 120px;"><button class="editButton" type="submit" 
-                name="accept" value="">Edit my services</button></a>
-                <br><br></div>';
-
-            /* Requests for my services */
-            ?><br>
+    <br><br>
     <section id="searchPage">
 
         <?php if (isset($_SESSION['status'])) {
@@ -115,7 +86,7 @@ if (!isset($_SESSION["login"]))
         unset($_SESSION['stat']);
         ?>
         <div id="servicesRequested"><br>
-            <h1>Requests for my services</h1><br><br>
+            <h1>My requests for services</h1><br><br>
             <ul>
                 <?php
                 $phon = $_SESSION['phone'];
@@ -123,14 +94,14 @@ if (!isset($_SESSION["login"]))
                 ,o.startDate,o.endDate	, o.phoneNumber as requestedphone
                 ,ui.name as ownerName,o.order_service_id, `condition` FROM `order` AS o JOIN service_item AS si ON o.service_ID = si.service_ID 
                 JOIN user_info AS ui ON si.phone = ui.phoneNumber Join imagesofservice as ios on si.service_ID = ios.serviceID  
-                WHERE si.phone = ' . "$phon" . ' ORDER BY order_service_id DESC';
+                WHERE o.phoneNumber = ' . "$phon" . ' ORDER BY order_service_id DESC';
                 $result = $con->query($sql);
                 $repeat = "";
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         if ($repeat != $row["order_service_id"]) {
                             $sid = $row["service_id"];
-                            if ($row["condition"] == 'waiting' && $_SESSION["phone"] = $row['ownerphone']) {
+                            if ($row["condition"] == 'waiting' && $_SESSION["phone"] = $row['requestedphone']) {
                                 echo "<li> <a href='servicePag.php?value=" . $sid . "' class='styleFora'>
                             <img src='img/" . $row["img_name"] . "' >
                             <div class='service-details'>
@@ -143,17 +114,10 @@ if (!isset($_SESSION["login"]))
                                 $result2 = $con->query($sqlp);
                                 $row2 = $result2->fetch_assoc();
                                 $oID = $row["order_service_id"];
-                                echo " <p>Requested by: " . $row2['name'] . ".</p>
+                                echo " <p>Requested from: " . $row2['name'] . ".</p>
                             </div>
-                            <div class='btnOfAccRef'>
-                                <form action='refuseOrAccept.php' method='post'>
-                                    <input type='hidden' name='service_id' value='5'>
-                                    <button class='accepTbutton' type='submit' name='accept' value='$oID'>Accept</button>
-                                    <button class='refusebutton' type='submit' name='refuse' value='$oID'>Refuse</button>
-                                </form>
-                            </div></a>
                         </li>";
-                            } elseif ($row["condition"] == 'accept' && $_SESSION["phone"] = $row['ownerphone']) {
+                            } elseif ($row["condition"] == 'accept' && $_SESSION["phone"] = $row['requestedphone']) {
                                 echo "<li> <a href='servicePag.php?value=" . $sid . "' class='styleFora'>
                             <img src='img/" . $row["img_name"] . "'>
                             <div class='service-details'>
@@ -165,7 +129,7 @@ if (!isset($_SESSION["login"]))
                                 $sqlp = 'SELECT name FROM user_info where phoneNumber=' . $row["requestedphone"] . '';
                                 $result2 = $con->query($sqlp);
                                 $row2 = $result2->fetch_assoc();
-                                echo " <p>Requested by: " . $row2['name'] . ".</p>
+                                echo " <p>Requested from: " . $row2['name'] . ".</p>
                                 <p>" . $row2['name'] . " phone number: " . $row['requestedphone'] . "</p>
                             </div> </a>
                             </li>";
