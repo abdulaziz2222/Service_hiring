@@ -23,6 +23,20 @@ body {
     margin: 0;
   }
   
+
+.topnav a.logo-link {
+  padding: 0; /* Remove padding to ensure the image fills the corner */
+}
+
+.topnav a.logo-link img.logo {
+  height: 100%; /* Make the image fill the height of the navbar */
+  width: auto;  /* Keep the aspect ratio intact */
+  display: block; /* Remove any gaps caused by inline display */
+}
+
+.logo-link {
+  height: 100%; /* Make the anchor tag the full height of the nav bar */
+}
   .topnav a {
     float: left;
     display: block;

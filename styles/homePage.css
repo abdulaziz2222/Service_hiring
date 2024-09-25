@@ -59,8 +59,11 @@
   .styleFora{
     text-decoration:none; 
     color:black;
+    
   }
-
+  .styleFora img {
+    border-radius: 10px;
+  }
   #Last10AddedServices h3,#searchPage h3,#MostOrder h3 {
   font: bold 20px/1.5;
 }
@@ -82,4 +85,4 @@
 }	
 
 
-/*footer style*/
+
